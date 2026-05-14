@@ -1,27 +1,7 @@
-export const RULES = [
-  {
-    id: "fit",
-    title: "Fit înainte de brand",
-    body: "Linia umerilor, talia și lungimea mânecii decid instant nivelul perceput. Ajustările minore la croitor cresc calitatea vizuală mai mult decât orice logo.",
-  },
-  {
-    id: "palette",
-    title: "Paletă restrânsă",
-    body: "Pentru coerență, construiește fiecare ținută în 3-4 tonuri. Lasă accentul să apară pe un singur element: cravată, eșarfă sau încălțăminte.",
-  },
-  {
-    id: "texture",
-    title: "Contrast de textură",
-    body: "Când culorile sunt apropiate, diferențiază prin material: bumbac, lână, denim, piele. Look-ul rămâne calm, dar bogat.",
-  },
-  {
-    id: "occasion",
-    title: "Contextul conduce alegerile",
-    body: "Aceeași piesă poate fi elegantă sau nepotrivită în funcție de mediu. Evaluează nivelul de formalitate al evenimentului înainte de selecție.",
-  },
-  {
-    id: "maintenance",
-    title: "Îngrijire constantă",
-    body: "Haine curate, călcate corect și încălțăminte îngrijită transmit disciplină. Întreținerea prelungește viața pieselor și menține imaginea premium.",
-  },
+export const rules = [
+  { id: "r1", title: "Fit înainte de brand", body: "Croiala corectă ridică imediat nivelul perceput al oricărei piese." },
+  { id: "r2", title: "Maximum 4 culori", body: "Păstrează paleta restrânsă pentru un rezultat coerent." },
+  { id: "r3", title: "Un singur accent", body: "Alege un punct focal: pantof, ceas sau strat superior." },
+  { id: "r4", title: "Respectă contextul", body: "Business, date sau city break cer niveluri diferite de formalitate." },
+  { id: "r5", title: "Îngrijire constantă", body: "Piese curate și încălțăminte întreținută schimbă complet rezultatul." },
 ];

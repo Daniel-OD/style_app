@@ -1,42 +1,25 @@
-import { useMemo, useState } from "react";
-import { AnimatePresence } from "framer-motion";
-import { NAVIGATION } from "./config/navigation";
-import AppShell from "./app/AppShell";
-import OutfituriScreen from "./screens/OutfituriScreen";
-import PlannerScreen from "./screens/PlannerScreen";
-import UpgradeScreen from "./screens/UpgradeScreen";
-import TeorieScreen from "./screens/TeorieScreen";
-import ReguliScreen from "./screens/ReguliScreen";
-import { motion, reducedMotion, safeTransition, variants } from "./design/motion";
+import React, { Suspense, lazy, useState } from "react";
+import { AppShell } from "./app/AppShell";
+import { T } from "./design/tokens";
+import { TABS } from "./config/navigation";
 
-const SCREEN_MAP = {
-  outfituri: OutfituriScreen,
-  planner: PlannerScreen,
-  upgrade: UpgradeScreen,
-  teorie: TeorieScreen,
-  reguli: ReguliScreen,
+const SCREENS = {
+  outfituri: lazy(() => import("./screens/OutfituriScreen")),
+  planner: lazy(() => import("./screens/PlannerScreen")),
+  upgrade: lazy(() => import("./screens/UpgradeScreen")),
+  teorie: lazy(() => import("./screens/TeorieScreen")),
+  reguli: lazy(() => import("./screens/ReguliScreen")),
 };
 
-const App = () => {
-  const [active, setActive] = useState(NAVIGATION[0].key);
-  const ActiveScreen = useMemo(() => SCREEN_MAP[active] || OutfituriScreen, [active]);
-  const shouldReduce = reducedMotion();
-
+export default function App() {
+  const [tab, setTab] = useState("outfituri");
+  const Screen = SCREENS[tab];
   return (
-    <AppShell title="Wardrobe Intelligence" navItems={NAVIGATION} active={active} onNavigate={setActive}>
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={active}
-          initial={variants.fadeIn.initial}
-          animate={variants.fadeIn.animate}
-          exit={variants.fadeIn.exit}
-          transition={safeTransition(shouldReduce, variants.fadeIn.animate.transition)}
-        >
-          <ActiveScreen />
-        </motion.div>
-      </AnimatePresence>
+    <AppShell tab={tab} setTab={setTab}>
+      <Suspense fallback={<div style={{ padding: T.sp8, color: T.textMuted }}>Se încarcă...</div>}>
+        <Screen />
+      </Suspense>
     </AppShell>
   );
-};
+}
 
-export default App;

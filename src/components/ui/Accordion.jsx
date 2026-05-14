@@ -1,66 +1,63 @@
 import { useState } from "react";
 import { T } from "../../design/tokens";
-import Icon from "./Icon";
+import { Icon } from "./Icon";
+import { motion } from "../../design/motion";
 
-const itemStyle = {
-  background: T.bgCard,
-  borderRadius: T.rMd,
-  padding: T.sp4,
-  boxShadow: T.shadowRaised,
-};
+const bodyStyle = (open) => ({
+  display: "grid",
+  gridTemplateRows: open ? "1fr" : "0fr",
+  transition: motion.safeTransition("grid-template-rows 220ms ease"),
+});
 
-/**
- * @param {{items: Array<{id: string, title: string, body: string}>}} props
- */
-const Accordion = ({ items }) => {
-  const [open, setOpen] = useState(items[0]?.id || null);
+function Accordion({ title, icon, children, defaultOpen = false }) {
+  const [open, setOpen] = useState(defaultOpen);
 
   return (
-    <div style={{ display: "grid", gap: T.sp3 }}>
-      {items.map((item) => {
-        const isOpen = open === item.id;
-        return (
-          <div key={item.id} style={itemStyle}>
-            <button
-              type="button"
-              onClick={() => setOpen(isOpen ? null : item.id)}
-              style={{
-                width: "100%",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                gap: T.sp3,
-                border: "none",
-                background: "transparent",
-                padding: 0,
-                cursor: "pointer",
-                color: T.textPrimary,
-                textAlign: "left",
-                fontSize: T.textMd,
-                fontWeight: T.weightSemi,
-                fontFamily: T.fontBody,
-              }}
-            >
-              <span>{item.title}</span>
-              <Icon name={isOpen ? "chevronDown" : "chevronRight"} />
-            </button>
-            {isOpen ? (
-              <p
-                style={{
-                  margin: `${T.sp3}px 0 0`,
-                  color: T.textSecondary,
-                  lineHeight: 1.55,
-                  fontSize: T.textBase,
-                }}
-              >
-                {item.body}
-              </p>
-            ) : null}
+    <section
+      style={{
+        background: T.bgCard,
+        borderRadius: T.rMd,
+        border: `0.5px solid ${T.border}`,
+        boxShadow: T.shadowRaised,
+      }}
+    >
+      <button
+        type="button"
+        aria-expanded={open}
+        onClick={() => setOpen((v) => !v)}
+        style={{
+          width: "100%",
+          minHeight: 44,
+          border: "none",
+          background: "transparent",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: T.sp3,
+          padding: T.sp4,
+          cursor: "pointer",
+          color: T.textPrimary,
+          fontFamily: T.fontBody,
+          fontSize: T.textMd,
+          fontWeight: T.weightSemi,
+          textAlign: "left",
+        }}
+      >
+        <span style={{ display: "inline-flex", alignItems: "center", gap: T.sp2 }}>
+          {icon ? <Icon name={icon} size={16} /> : null}
+          {title}
+        </span>
+        <Icon name={open ? "chevronDown" : "chevronRight"} size={16} />
+      </button>
+      <div style={bodyStyle(open)}>
+        <div style={{ overflow: "hidden" }}>
+          <div style={{ padding: `0 ${T.sp4}px ${T.sp4}px`, color: T.textSecondary, lineHeight: 1.6, fontSize: T.textBase }}>
+            {children}
           </div>
-        );
-      })}
-    </div>
+        </div>
+      </div>
+    </section>
   );
-};
+}
 
 export default Accordion;

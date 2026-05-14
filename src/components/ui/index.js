@@ -6,4 +6,4 @@ export { default as InfoPanel } from "./InfoPanel";
 export { default as LabelRow } from "./LabelRow";
 export { default as TipList } from "./TipList";
 export { default as SwatchGrid } from "./SwatchGrid";
-export { default as Icon } from "./Icon";
+export { Icon } from "./Icon";
