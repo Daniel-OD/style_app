@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { OUTFITS } from "../data/outfits";
 
 /**
@@ -17,6 +17,13 @@ export const useOutfitSelection = () => {
   }, [occasion]);
 
   const selected = outfits.find((item) => item.id === selectedId) || outfits[0] || null;
+
+  useEffect(() => {
+    if (!selected) return;
+    if (selected.id !== selectedId) {
+      setSelectedId(selected.id);
+    }
+  }, [selected, selectedId]);
 
   return {
     occasion,

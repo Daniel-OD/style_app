@@ -13,9 +13,9 @@ const TipList = ({ items }) => (
       gap: T.sp2,
     }}
   >
-    {items.map((tip) => (
+    {items.map((tip, index) => (
       <li
-        key={tip}
+        key={`${tip}-${index}`}
         style={{
           color: T.textSecondary,
           fontSize: T.textBase,
