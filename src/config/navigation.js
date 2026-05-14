@@ -1,7 +1,7 @@
-export const NAVIGATION = [
-  { key: "outfituri", label: "Outfituri", icon: "shirt" },
-  { key: "planner", label: "Planner", icon: "calendar" },
-  { key: "upgrade", label: "Upgrade", icon: "trend" },
-  { key: "teorie", label: "Teorie", icon: "bookOpen" },
-  { key: "reguli", label: "Reguli", icon: "clipboard" },
+export const TABS = [
+  { id: "outfituri", label: "Outfituri", iconName: "outfits" },
+  { id: "planner", label: "Planner", iconName: "planner" },
+  { id: "upgrade", label: "Upgrade", iconName: "upgrade" },
+  { id: "teorie", label: "Teorie", iconName: "theory" },
+  { id: "reguli", label: "Reguli", iconName: "rules" },
 ];
