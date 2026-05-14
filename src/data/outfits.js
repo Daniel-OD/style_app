@@ -143,7 +143,7 @@ export const outfits = [
     id: "E",
     iconName: "mover",
     name: "The Mover",
-    score: 8,
+    score: 8.0,
     cats: ["teambuilding", "workshop"],
     colorStory: "Smart utilitar pentru zile active cu mobilitate mare.",
     palette: ["#1e2d4a", "#64724b", "#d9d2c8", "#252522"],

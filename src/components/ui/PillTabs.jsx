@@ -2,11 +2,22 @@ import { T } from "../../design/tokens";
 import { motion } from "../../design/motion";
 
 function PillTabs({ options, value, onChange, ariaLabel }) {
+  const onScrollKeys = (event) => {
+    const container = event.currentTarget;
+    if (event.key === "ArrowRight") {
+      container.scrollBy({ left: 120, behavior: "smooth" });
+    }
+    if (event.key === "ArrowLeft") {
+      container.scrollBy({ left: -120, behavior: "smooth" });
+    }
+  };
   return (
     <div style={{ position: "relative" }}>
       <div
         role="tablist"
         aria-label={ariaLabel}
+        tabIndex={0}
+        onKeyDown={onScrollKeys}
         style={{
           display: "flex",
           gap: T.sp2,

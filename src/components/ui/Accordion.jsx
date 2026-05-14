@@ -49,7 +49,7 @@ function Accordion({ title, icon, children, defaultOpen = false }) {
         </span>
         <Icon name={open ? "chevronDown" : "chevronRight"} size={16} />
       </button>
-      <div style={bodyStyle(open)}>
+      <div style={bodyStyle(open)} aria-hidden={!open}>
         <div style={{ overflow: "hidden" }}>
           <div style={{ padding: `0 ${T.sp4}px ${T.sp4}px`, color: T.textSecondary, lineHeight: 1.6, fontSize: T.textBase }}>
             {children}
