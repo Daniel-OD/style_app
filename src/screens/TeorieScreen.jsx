@@ -1,84 +1,24 @@
-import { useMemo, useState } from "react";
 import { T } from "../design/tokens";
-import { TEORIE_SECTIONS } from "../data/teorie";
-import { PillTabs } from "../components/ui";
-import {
-  AccesoriiContent,
-  CapsuleContent,
-  ChinoContent,
-  GroomingContent,
-  HaineContent,
-  IncredereContent,
-  MaterialeContent,
-  ParfumContent,
-  PrincipiiContent,
-  PsihologieContent,
-  SezoaneContent,
-  TonContent,
-} from "./teorie";
+import { teorieSections } from "../data/teorie";
+import { Accordion } from "../components/ui";
 
-const CONTENT_MAP = {
-  principii: PrincipiiContent,
-  ton: TonContent,
-  sezoane: SezoaneContent,
-  haine: HaineContent,
-  materiale: MaterialeContent,
-  grooming: GroomingContent,
-  parfum: ParfumContent,
-  accesorii: AccesoriiContent,
-  chino: ChinoContent,
-  psihologie: PsihologieContent,
-  incredere: IncredereContent,
-  capsule: CapsuleContent,
-};
-
-const TeorieScreen = () => {
-  const [active, setActive] = useState(TEORIE_SECTIONS[0]?.id || "principii");
-  const ActiveContent = useMemo(() => CONTENT_MAP[active] || PrincipiiContent, [active]);
-
+function TeorieScreen() {
   return (
-    <section style={{ display: "grid", gap: T.sp5 }}>
-      <div style={{ display: "grid", gap: T.sp3 }}>
-        <p
-          style={{
-            margin: 0,
-            color: T.textMuted,
-            textTransform: "uppercase",
-            letterSpacing: T.trackingWidest,
-            fontSize: T.textXs,
-            fontWeight: T.weightSemi,
-          }}
-        >
-          Knowledge Base
+    <section style={{ display: "grid", gap: T.sp4 }}>
+      <div style={{ display: "grid", gap: T.sp2 }}>
+        <p style={{ margin: 0, color: T.textMuted, fontSize: T.textXs, letterSpacing: T.trackingWidest, textTransform: "uppercase" }}>
+          Teorie
         </p>
-        <h2
-          style={{
-            margin: 0,
-            fontFamily: T.fontDisplay,
-            fontSize: T.textXl,
-            fontWeight: T.weightSemi,
-          }}
-        >
-          Teorie de stil
-        </h2>
+        <h2 style={{ margin: 0, fontFamily: T.fontDisplay, fontSize: T.textXl, fontWeight: T.weightSemi }}>Fundamente de stil</h2>
       </div>
-      <PillTabs
-        items={TEORIE_SECTIONS.map((section) => ({ id: section.id, label: section.title }))}
-        active={active}
-        onChange={setActive}
-      />
-      <article
-        style={{
-          background: T.bgCard,
-          borderRadius: T.rLg,
-          boxShadow: T.shadowRaised,
-          padding: T.sp5,
-        }}
-      >
-        <ActiveContent />
-      </article>
+
+      {teorieSections.slice(0, 5).map((section, index) => (
+        <Accordion key={section.id} title={section.title} icon={section.iconName} defaultOpen={index === 0}>
+          {section.body}
+        </Accordion>
+      ))}
     </section>
   );
-};
+}
 
 export default TeorieScreen;

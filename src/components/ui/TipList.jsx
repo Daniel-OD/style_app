@@ -1,44 +1,38 @@
 import { T } from "../../design/tokens";
+import { Icon } from "./Icon";
 
-/**
- * @param {{items: string[]}} props
- */
-const TipList = ({ items }) => (
-  <ul
-    style={{
-      margin: 0,
-      padding: 0,
-      listStyle: "none",
-      display: "grid",
-      gap: T.sp2,
-    }}
-  >
-    {items.map((tip, index) => (
-      <li
-        key={`${tip}-${index}`}
-        style={{
-          color: T.textSecondary,
-          fontSize: T.textBase,
-          lineHeight: 1.55,
-          paddingLeft: T.sp3,
-          position: "relative",
-        }}
-      >
-        <span
+const THEME = {
+  tips: { color: T.success, bg: T.successBg, icon: "check" },
+  avoid: { color: T.danger, bg: T.dangerBg, icon: "close" },
+};
+
+function TipList({ items, variant = "tips" }) {
+  const theme = THEME[variant] || THEME.tips;
+
+  return (
+    <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "grid", gap: T.sp2 }}>
+      {items.map((item, index) => (
+        <li
+          key={`${item}-${index}`}
           style={{
-            position: "absolute",
-            left: 0,
-            top: 0,
-            color: T.textMuted,
+            display: "flex",
+            alignItems: "flex-start",
+            gap: T.sp2,
+            background: theme.bg,
+            color: T.textSecondary,
+            border: `0.5px solid ${theme.color}`,
+            borderRadius: T.rSm,
+            padding: `${T.sp2}px ${T.sp3}px`,
+            lineHeight: 1.5,
+            fontSize: T.textSm,
           }}
-          aria-hidden="true"
         >
-          •
-        </span>
-        {tip}
-      </li>
-    ))}
-  </ul>
-);
+          <Icon name={theme.icon} size={14} color={theme.color} />
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
 
 export default TipList;

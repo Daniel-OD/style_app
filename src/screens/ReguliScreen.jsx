@@ -1,44 +1,26 @@
 import { T } from "../design/tokens";
-import { RULES } from "../data/rules";
+import { rules } from "../data/rules";
 import { Accordion, InfoPanel } from "../components/ui";
 
-const ReguliScreen = () => {
+function ReguliScreen() {
   return (
-    <section style={{ display: "grid", gap: T.sp5 }}>
-      <div style={{ display: "grid", gap: T.sp3 }}>
-        <p
-          style={{
-            margin: 0,
-            color: T.textMuted,
-            textTransform: "uppercase",
-            letterSpacing: T.trackingWidest,
-            fontSize: T.textXs,
-            fontWeight: T.weightSemi,
-          }}
-        >
-          Rulebook
+    <section style={{ display: "grid", gap: T.sp4 }}>
+      <div style={{ display: "grid", gap: T.sp2 }}>
+        <p style={{ margin: 0, color: T.textMuted, fontSize: T.textXs, letterSpacing: T.trackingWidest, textTransform: "uppercase" }}>
+          Reguli
         </p>
-        <h2
-          style={{
-            margin: 0,
-            fontFamily: T.fontDisplay,
-            fontSize: T.textXl,
-            fontWeight: T.weightSemi,
-          }}
-        >
-          Reguli operaționale
-        </h2>
+        <h2 style={{ margin: 0, fontFamily: T.fontDisplay, fontSize: T.textXl, fontWeight: T.weightSemi }}>Reguli de aur</h2>
       </div>
 
-      <Accordion items={RULES} />
+      {rules.map((item, index) => (
+        <Accordion key={item.id} title={item.title} icon="rules" defaultOpen={index === 0}>
+          {item.body}
+        </Accordion>
+      ))}
 
-      <InfoPanel
-        title="Aplicare rapidă"
-        text="Verifică fit, paleta și contextul înainte de a ieși din casă. Dacă toate trei sunt aliniate, ținuta va funcționa în majoritatea situațiilor."
-        icon="badgeCheck"
-      />
+      <InfoPanel variant="warning">Aplică întâi fit-ul, apoi culoarea, apoi accesoriile.</InfoPanel>
     </section>
   );
-};
+}
 
 export default ReguliScreen;

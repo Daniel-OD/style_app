@@ -1,37 +1,28 @@
 import { T } from "../../design/tokens";
 
-/**
- * @param {{label: string, value: string}} props
- */
-const LabelRow = ({ label, value }) => (
-  <div
-    style={{
-      display: "flex",
-      justifyContent: "space-between",
-      alignItems: "center",
-      gap: T.sp3,
-    }}
-  >
-    <span
-      style={{
-        color: T.textMuted,
-        fontSize: T.textSm,
-        textTransform: "uppercase",
-        letterSpacing: T.trackingWidest,
-      }}
-    >
-      {label}
-    </span>
-    <strong
-      style={{
-        color: T.textPrimary,
-        fontWeight: T.weightSemi,
-        fontSize: T.textBase,
-      }}
-    >
-      {value}
-    </strong>
-  </div>
-);
+const SIZE = {
+  sm: { label: T.textXs, value: T.textSm },
+  md: { label: T.textSm, value: T.textMd },
+};
+
+function LabelRow({ label, value, size = "sm" }) {
+  const scale = SIZE[size] || SIZE.sm;
+  return (
+    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: T.sp3 }}>
+      <span
+        style={{
+          color: T.textMuted,
+          fontSize: scale.label,
+          textTransform: "uppercase",
+          letterSpacing: T.trackingWidest,
+          fontWeight: T.weightMedium,
+        }}
+      >
+        {label}
+      </span>
+      <strong style={{ margin: 0, color: T.textPrimary, fontSize: scale.value, fontWeight: T.weightSemi }}>{value}</strong>
+    </div>
+  );
+}
 
 export default LabelRow;

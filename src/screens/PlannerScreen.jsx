@@ -1,77 +1,58 @@
-import { T } from "../design/tokens";
-import { WEEK_PLANNER } from "../data/planner";
-import { OCCASIONS } from "../data/occasions";
-import { Icon, TipList } from "../components/ui";
+import { useMemo, useState } from "react";
+import { T, styles } from "../design/tokens";
+import { occasions, weatherOptions } from "../data/occasions";
+import { planner } from "../data/planner";
+import { outfits } from "../data/outfits";
+import { Icon, InfoPanel, LabelRow, PillTabs } from "../components/ui";
 
-const PlannerScreen = () => {
+function PlannerScreen() {
+  const [occasion, setOccasion] = useState("business");
+  const [weather, setWeather] = useState("indoor");
+
+  const match = useMemo(
+    () => planner.find((item) => item.occasion === occasion && item.weather === weather) || planner[0],
+    [occasion, weather],
+  );
+
+  const outfit = outfits.find((item) => item.id === match?.outfitId);
+
   return (
     <section style={{ display: "grid", gap: T.sp5 }}>
-      <div style={{ display: "grid", gap: T.sp3 }}>
-        <p
-          style={{
-            margin: 0,
-            color: T.textMuted,
-            textTransform: "uppercase",
-            letterSpacing: T.trackingWidest,
-            fontSize: T.textXs,
-            fontWeight: T.weightSemi,
-          }}
-        >
-          Weekly Flow
+      <div style={{ display: "grid", gap: T.sp2 }}>
+        <p style={{ margin: 0, color: T.textMuted, fontSize: T.textXs, letterSpacing: T.trackingWidest, textTransform: "uppercase" }}>
+          Planner
         </p>
-        <h2
-          style={{
-            margin: 0,
-            fontFamily: T.fontDisplay,
-            fontSize: T.textXl,
-            fontWeight: T.weightSemi,
-          }}
-        >
-          Planner săptămânal
-        </h2>
+        <h2 style={{ margin: 0, fontFamily: T.fontDisplay, fontSize: T.textXl, fontWeight: T.weightSemi }}>Recomandare ocazie + vreme</h2>
       </div>
 
-      <div style={{ display: "grid", gap: T.sp3 }}>
-        {WEEK_PLANNER.map((entry) => {
-          const occasionLabel = OCCASIONS.find((item) => item.id === entry.occasion)?.label || "General";
-          return (
-            <article
-              key={entry.day}
-              style={{
-                background: T.bgCard,
-                borderRadius: T.rLg,
-                boxShadow: T.shadowRaised,
-                padding: T.sp4,
-                display: "grid",
-                gap: T.sp2,
-              }}
-            >
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: T.sp3 }}>
-                <h3 style={{ margin: 0, fontSize: T.textMd, fontWeight: T.weightSemi }}>{entry.day}</h3>
-                <span
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: T.sp1,
-                    color: T.textMuted,
-                    fontSize: T.textSm,
-                    textTransform: "uppercase",
-                    letterSpacing: T.trackingWidest,
-                  }}
-                >
-                  <Icon name="calendar" size={14} /> {occasionLabel}
-                </span>
-              </div>
-              <p style={{ margin: 0, color: T.textPrimary, fontSize: T.textBase, fontWeight: T.weightMedium }}>
-                {entry.focus}
-              </p>
-              <TipList items={entry.tips} />
-            </article>
-          );
-        })}
-      </div>
+      <PillTabs
+        ariaLabel="Ocazie"
+        options={occasions.filter((item) => item.id !== "all").map((item) => ({ id: item.id, label: item.label }))}
+        value={occasion}
+        onChange={setOccasion}
+      />
+
+      <PillTabs
+        ariaLabel="Vreme"
+        options={weatherOptions.map((item) => ({ id: item.id, label: item.label }))}
+        value={weather}
+        onChange={setWeather}
+      />
+
+      <article style={{ ...styles.card, display: "grid", gap: T.sp3 }}>
+        <h3 style={{ margin: 0, fontSize: T.textLg, fontWeight: T.weightSemi }}>Propunere</h3>
+        <LabelRow label="Ținută" value={outfit?.name || "N/A"} size="md" />
+        <LabelRow label="Motiv" value={match?.reason || "N/A"} size="sm" />
+        {outfit ? (
+          <div style={{ display: "inline-flex", alignItems: "center", gap: T.sp2, color: T.textSecondary }}>
+            <Icon name={outfit.iconName} size={16} /> {outfit.colorStory}
+          </div>
+        ) : null}
+      </article>
+
+      <InfoPanel variant="success">Verifică încălțămintea și stratul exterior înainte de plecare pentru contextul zilei.</InfoPanel>
     </section>
   );
-};
+}
 
 export default PlannerScreen;

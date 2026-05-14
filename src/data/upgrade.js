@@ -1,32 +1,26 @@
-export const UPGRADE_PATH = [
+export const upgrade = [
   {
-    tier: "Fundație",
-    budget: "0-600 RON",
-    icon: "layers",
-    bullets: [
-      "2 tricouri premium uni",
-      "1 cămașă albă versatilă",
-      "1 pereche chino navy",
-    ],
+    id: "fit",
+    iconName: "chinofit",
+    title: "Fit corect",
+    notes: ["Scurtează mâneca până la osul încheieturii.", "Ajustează pantalonul pentru cădere curată."],
   },
   {
-    tier: "Structură",
-    budget: "600-1800 RON",
-    icon: "target",
-    bullets: [
-      "Sacou bleumarin cu construcție lejeră",
-      "Pantofi piele maro mediu",
-      "Curea și portofel în același ton",
-    ],
+    id: "materials",
+    iconName: "materials",
+    title: "Materiale mai bune",
+    notes: ["Prioritizează bumbac dens și lână fină.", "Evită amestecurile care își pierd forma rapid."],
   },
   {
-    tier: "Semnătură",
-    budget: "1800+ RON",
-    icon: "crown",
-    bullets: [
-      "Palton lână în ton neutru",
-      "Ceas cu design simplu",
-      "Accesorii mici cu metal consistent",
-    ],
+    id: "accessories",
+    iconName: "accessories",
+    title: "Accesorii coerente",
+    notes: ["Potrivește cureaua cu încălțămintea.", "Folosește un singur accent metalic per ținută."],
+  },
+  {
+    id: "confidence",
+    iconName: "confidence",
+    title: "Execuție cu încredere",
+    notes: ["Alege 2 uniforme personale pentru zile aglomerate.", "Fotografiază combinațiile reușite pentru repetare."],
   },
 ];

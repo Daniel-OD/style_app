@@ -1,35 +1,36 @@
-import { useEffect, useMemo, useState } from "react";
-import { OUTFITS } from "../data/outfits";
+import { useMemo, useState } from "react";
+import { outfits } from "../data/outfits";
 
-/**
- * @returns {{occasion: string, setOccasion: (id: string) => void, outfits: typeof OUTFITS, selected: typeof OUTFITS[number] | null, setSelectedId: (id: string) => void}}
- */
-export const useOutfitSelection = () => {
-  const [occasion, setOccasion] = useState("all");
-  const [selectedId, setSelectedId] = useState(OUTFITS[0]?.id || "");
+export function useOutfitSelection() {
+  const [occ, setOcc] = useState("all");
+  const [activeId, setActiveId] = useState(outfits[0]?.id || "");
+  const [activeV, setActiveV] = useState(0);
+  const [detailOpen, setDetailOpen] = useState(false);
 
-  const outfits = useMemo(() => {
-    const filtered =
-      occasion === "all"
-        ? OUTFITS
-        : OUTFITS.filter((outfit) => outfit.occasion === occasion);
-    return [...filtered].sort((a, b) => b.score - a.score);
-  }, [occasion]);
+  const visibleOutfits = useMemo(() => {
+    if (occ === "all") return outfits;
+    return outfits.filter((item) => item.cats.includes(occ));
+  }, [occ]);
 
-  const selected = outfits.find((item) => item.id === selectedId) || outfits[0] || null;
+  const firstVisible = visibleOutfits[0]?.id;
+  const selectedId = visibleOutfits.some((item) => item.id === activeId) ? activeId : firstVisible || "";
 
-  useEffect(() => {
-    if (!selected) return;
-    if (selected.id !== selectedId) {
-      setSelectedId(selected.id);
-    }
-  }, [selected, selectedId]);
+  const select = (id) => {
+    setActiveId(id);
+    setActiveV(0);
+    setDetailOpen(false);
+  };
+
+  const toggleDetail = () => setDetailOpen((value) => !value);
 
   return {
-    occasion,
-    setOccasion,
-    outfits,
-    selected,
-    setSelectedId,
+    occ,
+    setOcc,
+    activeId: selectedId,
+    activeV,
+    detailOpen,
+    select,
+    setActiveV,
+    toggleDetail,
   };
-};
+}

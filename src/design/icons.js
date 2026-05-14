@@ -1,61 +1,66 @@
 import React from "react";
-import {
-  Armchair,
-  ArrowRight,
-  BadgeCheck,
-  BookOpen,
-  Brain,
-  CalendarDays,
-  ChevronDown,
-  ChevronRight,
-  ClipboardList,
-  Crown,
-  Gem,
-  Layers,
-  Palette,
-  Shirt,
-  Sparkles,
-  Target,
-  TrendingUp,
-} from "lucide-react";
+import * as Lucide from "lucide-react";
 
-export const ICON_MAP = {
-  armchair: Armchair,
-  arrowRight: ArrowRight,
-  badgeCheck: BadgeCheck,
-  bookOpen: BookOpen,
-  brain: Brain,
-  calendar: CalendarDays,
-  chevronDown: ChevronDown,
-  chevronRight: ChevronRight,
-  clipboard: ClipboardList,
-  crown: Crown,
-  gem: Gem,
-  layers: Layers,
-  palette: Palette,
-  shirt: Shirt,
-  sparkles: Sparkles,
-  target: Target,
-  trend: TrendingUp,
+const ICON_KEYS = {
+  outfits: "Shirt",
+  planner: "CalendarDays",
+  upgrade: "TrendingUp",
+  theory: "BookOpen",
+  rules: "Scale",
+  presenter: "Presentation",
+  minimal: "Circle",
+  evening: "MoonStar",
+  layered: "Layers",
+  mover: "MoveRight",
+  workshop: "Hammer",
+  conference: "MicVocal",
+  business: "BriefcaseBusiness",
+  teambuilding: "Users",
+  brunch: "Coffee",
+  date: "Heart",
+  dinner: "Utensils",
+  citybreak: "MapPinned",
+  party: "Sparkles",
+  dayout: "Sun",
+  indoor: "House",
+  mild: "CloudSun",
+  warm: "SunMedium",
+  cold: "Snowflake",
+  warning: "TriangleAlert",
+  check: "BadgeCheck",
+  close: "X",
+  chevronDown: "ChevronDown",
+  chevronRight: "ChevronRight",
+  arrow: "ArrowRight",
+  info: "Info",
+  palette: "Palette",
+  score: "Gauge",
+  shoes: "Footprints",
+  belt: "CircleEllipsis",
+  layer: "Layers2",
+  principles: "Compass",
+  skintone: "ScanFace",
+  seasons: "Leaf",
+  clothes: "Shirt",
+  materials: "Gem",
+  grooming: "Scissors",
+  fragrance: "Droplets",
+  accessories: "Watch",
+  chinofit: "Ruler",
+  psychology: "Brain",
+  confidence: "ShieldCheck",
+  capsule: "Package",
 };
 
-/**
- * @param {{name: keyof typeof ICON_MAP, size?: number, color?: string, strokeWidth?: number, style?: object}} props
- */
-export const Icon = ({
-  name,
-  size = 18,
-  color = "currentColor",
-  strokeWidth = 1.9,
-  style,
-}) => {
-  const Comp = ICON_MAP[name];
-  if (!Comp) return null;
-  return React.createElement(Comp, {
+export function Icon({ name, size = 18, color = "currentColor", strokeWidth = 1.9, style }) {
+  const key = ICON_KEYS[name] || "Circle";
+  const Component = Lucide[key] || Lucide.Circle;
+  return React.createElement(Component, {
     size,
     color,
     strokeWidth,
-    "aria-hidden": "true",
     style,
+    "aria-hidden": "true",
+    focusable: "false",
   });
-};
+}
