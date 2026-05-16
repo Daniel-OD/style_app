@@ -82,10 +82,9 @@ export const FIG = {
 };
 
 export const scoreSignal = (score) => {
-  if (score >= 9) return { color: T.success, bg: T.successBg, label: "Excelent" };
-  if (score >= 8) return { color: "#64724b", bg: "#f2f5ee", label: "Foarte bun" };
-  if (score >= 7) return { color: T.warning, bg: T.warningBg, label: "Bun" };
-  return { color: T.textMuted, bg: T.bgSubtle, label: "Acceptabil" };
+  if (score >= 8) return { level: "high", color: T.success, bg: T.successBg, label: "Excelent" };
+  if (score >= 7) return { level: "mid", color: T.warning, bg: T.warningBg, label: "Bun" };
+  return { level: "low", color: T.textMuted, bg: T.bgSubtle, label: "Acceptabil" };
 };
 
 export const scoreColor = (score) => scoreSignal(score).color;

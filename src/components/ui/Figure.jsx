@@ -6,7 +6,7 @@ function Figure({ f, size = 130, skin, hair }) {
   const hairFill = hair || FIG.hair;
 
   return (
-    <svg width={size} height={size * 1.42} viewBox="0 0 120 170" aria-hidden="true" focusable="false" style={{ display: "block" }}>
+    <svg width={size} height={size * 1.42} viewBox="0 0 120 180" aria-hidden="true" focusable="false" style={{ display: "block", margin: "0 auto" }}>
       <rect x="46" y="6" width="28" height="8" rx="4" fill={hairFill} />
       <circle cx="60" cy="22" r="12" fill={skinFill} />
       <rect x="35" y="36" width="50" height="18" rx="8" fill={figure.top || FIG.neutral} />
