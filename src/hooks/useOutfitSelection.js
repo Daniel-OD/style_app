@@ -29,6 +29,7 @@ export function useOutfitSelection() {
     activeId: selectedId,
     activeV,
     detailOpen,
+    visibleOutfits,
     select,
     setActiveV,
     toggleDetail,

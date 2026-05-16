@@ -1,14 +1,11 @@
-import { useMemo } from "react";
 import { T, styles } from "../design/tokens";
 import { occasions } from "../data/occasions";
-import { outfits } from "../data/outfits";
 import { useOutfitSelection } from "../hooks/useOutfitSelection";
 import { Figure, InfoPanel, LabelRow, PillTabs, ScoreBadge, SwatchGrid, TipList, Icon } from "../components/ui";
 
 function OutfituriScreen() {
-  const { occ, setOcc, activeId, activeV, detailOpen, select, setActiveV, toggleDetail } = useOutfitSelection();
+  const { occ, setOcc, activeId, activeV, detailOpen, select, setActiveV, toggleDetail, visibleOutfits: visible } = useOutfitSelection();
 
-  const visible = useMemo(() => (occ === "all" ? outfits : outfits.filter((item) => item.cats.includes(occ))), [occ]);
   const active = visible.find((item) => item.id === activeId) || visible[0];
   const version = active?.versions.find((item) => item.v === activeV) || active?.versions[0];
 
