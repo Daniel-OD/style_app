@@ -20,7 +20,7 @@ function OutfituriScreen() {
 
       <PillTabs
         ariaLabel="Filtru ocazii"
-        options={occasions.map((item) => ({ id: item.id, label: item.label }))}
+        options={occasions.map((item) => ({ id: item.id, label: item.label, iconName: item.iconName }))}
         value={occ}
         onChange={setOcc}
       />
@@ -69,7 +69,7 @@ function OutfituriScreen() {
 
             <PillTabs
               ariaLabel="Versiuni ținută"
-              options={active.versions.map((item) => ({ id: String(item.v), label: item.label }))}
+              options={active.versions.map((item) => ({ id: String(item.v), label: item.label, iconName: active.iconName }))}
               value={String(version.v)}
               onChange={(v) => setActiveV(Number(v))}
             />

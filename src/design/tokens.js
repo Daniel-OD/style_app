@@ -1,4 +1,4 @@
-const P = {
+export const PALETTE = {
   ink900: "#1a1918",
   ink800: "#252522",
   ink600: "#5d5a52",
@@ -16,18 +16,20 @@ const P = {
   navy700: "#17243b",
 };
 
+export const P = PALETTE;
+
 export const T = {
-  textPrimary: P.ink900,
-  textSecondary: P.ink600,
-  textMuted: P.ink400,
-  textInverse: P.sand50,
+  textPrimary: PALETTE.ink900,
+  textSecondary: PALETTE.ink600,
+  textMuted: PALETTE.ink400,
+  textInverse: PALETTE.sand50,
 
-  bg: P.sand100,
-  bgCard: P.sand50,
-  bgSubtle: P.sand200,
-  bgInk: P.ink800,
+  bg: PALETTE.sand100,
+  bgCard: PALETTE.sand50,
+  bgSubtle: PALETTE.sand200,
+  bgInk: PALETTE.ink800,
 
-  border: P.sand400,
+  border: PALETTE.sand400,
 
   sp1: 4,
   sp2: 8,
@@ -64,13 +66,14 @@ export const T = {
 
   trackingWidest: "0.12em",
 
-  success: P.olive600,
-  danger: P.wine400,
-  warning: P.gold600,
+  success: PALETTE.olive600,
+  danger: PALETTE.wine400,
+  warning: PALETTE.gold600,
 
   successBg: "#eef5ed",
   dangerBg: "#fdf0f0",
   warningBg: "#faf4e8",
+  infoBg: "#edf3fa",
 };
 
 export const FIG = {
@@ -94,7 +97,6 @@ export const styles = {
     background: T.bgCard,
     borderRadius: T.rMd,
     boxShadow: T.shadowRaised,
-    border: `0.5px solid ${T.border}`,
     padding: T.sp4,
   },
 };

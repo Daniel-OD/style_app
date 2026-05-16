@@ -18,7 +18,7 @@ export default function App() {
     <AppShell tab={tab} setTab={setTab}>
       <Suspense
         fallback={
-          <div style={{ padding: 40, color: T.textMuted, fontFamily: T.fontBody, fontSize: T.textBase }}>
+          <div style={{ padding: T.sp10, color: T.textMuted, fontFamily: T.fontBody, fontSize: T.textBase }}>
             Se încarcă...
           </div>
         }

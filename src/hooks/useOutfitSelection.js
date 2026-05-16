@@ -2,13 +2,13 @@ import { useMemo, useState } from "react";
 import { outfits } from "../data/outfits";
 
 export function useOutfitSelection() {
-  const [occ, setOcc] = useState("all");
+  const [occ, setOcc] = useState("Toate");
   const [activeId, setActiveId] = useState(outfits[0]?.id || "");
   const [activeV, setActiveV] = useState(0);
   const [detailOpen, setDetailOpen] = useState(false);
 
   const visibleOutfits = useMemo(() => {
-    if (occ === "all") return outfits;
+    if (occ === "Toate") return outfits;
     return outfits.filter((item) => item.cats.includes(occ));
   }, [occ]);
 
