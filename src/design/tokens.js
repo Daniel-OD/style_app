@@ -1,77 +1,53 @@
-const P = {
-  ink900: "#1a1918",
-  ink800: "#252522",
-  ink600: "#5d5a52",
-  ink400: "#767676",
-  sand50: "#fdfcfb",
-  sand100: "#f8f6f3",
-  sand200: "#f5f1ec",
-  sand400: "#e5ddd0",
-  sand500: "#d9d2c8",
-  gold500: "#b5a186",
-  gold600: "#8a7a62",
-  olive500: "#64724b",
-  olive600: "#4f7a58",
-  wine400: "#9f3d3d",
-  navy700: "#17243b",
-};
+const LIGHT = {
+  textPrimary: "#1a1918",
+  textSecondary: "#5d5a52",
+  textMuted: "#767676",
+  textInverse: "#fdfcfb",
 
-export const T = {
-  textPrimary: P.ink900,
-  textSecondary: P.ink600,
-  textMuted: P.ink400,
-  textInverse: P.sand50,
+  bg: "#f8f6f3",
+  bgCard: "#fdfcfb",
+  bgSubtle: "#f5f1ec",
+  bgInk: "#252522",
 
-  bg: P.sand100,
-  bgCard: P.sand50,
-  bgSubtle: P.sand200,
-  bgInk: P.ink800,
+  border: "#e5ddd0",
 
-  border: P.sand400,
-
-  sp1: 4,
-  sp2: 8,
-  sp3: 12,
-  sp4: 16,
-  sp5: 20,
-  sp6: 24,
-  sp8: 32,
-  sp10: 40,
-  sp12: 48,
-
-  rSm: 8,
-  rMd: 12,
-  rLg: 20,
-  rFull: 9999,
-
-  shadowRaised: "0 1px 4px rgba(26,25,24,.04), 0 0 0 0.5px rgba(26,25,24,.06)",
-  shadowFloat: "0 4px 16px rgba(26,25,24,.08), 0 0 0 0.5px rgba(26,25,24,.06)",
-
-  weightNormal: 400,
-  weightMedium: 500,
-  weightSemi: 600,
-  weightBold: 700,
-
-  textXs: 10,
-  textSm: 12,
-  textBase: 13,
-  textMd: 15,
-  textLg: 18,
-  textXl: 22,
-
-  fontBody: "'DM Sans', system-ui, sans-serif",
-  fontDisplay: "'Playfair Display', Georgia, serif",
-
-  trackingWidest: "0.12em",
-
-  success: P.olive600,
-  danger: P.wine400,
-  warning: P.gold600,
+  success: "#4f7a58",
+  danger: "#9f3d3d",
+  warning: "#8a7a62",
 
   successBg: "#eef5ed",
   dangerBg: "#fdf0f0",
   warningBg: "#faf4e8",
 };
+
+const DARK = {
+  textPrimary: "#f8f6f3",
+  textSecondary: "#d9d2c8",
+  textMuted: "#a8a29e",
+  textInverse: "#1a1918",
+
+  bg: "#1a1918",
+  bgCard: "#252522",
+  bgSubtle: "#3a372f",
+  bgInk: "#f5f1ec",
+
+  border: "#4b4640",
+
+  success: "#8ab88f",
+  danger: "#e07a7a",
+  warning: "#d4b38f",
+
+  successBg: "#1f2a22",
+  dangerBg: "#2a1f1f",
+  warningBg: "#2a261f",
+};
+
+export const T = {
+  ...LIGHT, // default light
+  // dark variants will be switched via context or class
+};
+
+export const getTokens = (isDark = false) => isDark ? DARK : LIGHT;
 
 export const FIG = {
   skin: "#d4956a",
@@ -82,20 +58,18 @@ export const FIG = {
 };
 
 export const scoreSignal = (score) => {
-  if (score >= 9) return { color: T.success, bg: T.successBg, label: "Excelent" };
+  if (score >= 9) return { color: "#4f7a58", bg: "#eef5ed", label: "Excelent" };
   if (score >= 8) return { color: "#64724b", bg: "#f2f5ee", label: "Foarte bun" };
-  if (score >= 7) return { color: T.warning, bg: T.warningBg, label: "Bun" };
-  return { color: T.textMuted, bg: T.bgSubtle, label: "Acceptabil" };
+  if (score >= 7) return { color: "#8a7a62", bg: "#faf4e8", label: "Bun" };
+  return { color: "#767676", bg: "#f5f1ec", label: "Acceptabil" };
 };
-
-export const scoreColor = (score) => scoreSignal(score).color;
 
 export const styles = {
   card: {
-    background: T.bgCard,
-    borderRadius: T.rMd,
-    boxShadow: T.shadowRaised,
-    border: `0.5px solid ${T.border}`,
-    padding: T.sp4,
+    background: LIGHT.bgCard,
+    borderRadius: 12,
+    boxShadow: "0 1px 4px rgba(26,25,24,.04), 0 0 0 0.5px rgba(26,25,24,.06)",
+    border: `0.5px solid ${LIGHT.border}`,
+    padding: 16,
   },
 };
