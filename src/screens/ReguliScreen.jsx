@@ -14,7 +14,12 @@ function ReguliScreen() {
 
       {rules.map((item, index) => (
         <Accordion key={item.id} title={item.title} icon="rules" defaultOpen={index === 0}>
-          {item.body}
+          <div style={{ display: "grid", gap: T.sp2 }}>
+            <span>{item.why}</span>
+            <span>
+              <strong>Aplică azi:</strong> {item.applyToday}
+            </span>
+          </div>
         </Accordion>
       ))}
 

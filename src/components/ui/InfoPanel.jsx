@@ -1,11 +1,11 @@
 import { T } from "../../design/tokens";
 
 const VARIANTS = {
-  dark: { bg: T.bgInk, color: T.textInverse, border: T.bgInk },
-  light: { bg: T.bgCard, color: T.textPrimary, border: T.border },
-  success: { bg: T.successBg, color: T.success, border: T.success },
-  danger: { bg: T.dangerBg, color: T.danger, border: T.danger },
-  warning: { bg: T.warningBg, color: T.warning, border: T.warning },
+  dark: { bg: T.bgInk, color: T.textInverse },
+  light: { bg: T.bgSubtle, color: T.textPrimary, accent: T.bgInk },
+  success: { bg: T.successBg, color: T.success, accent: T.success },
+  danger: { bg: T.dangerBg, color: T.danger, accent: T.danger },
+  warning: { bg: T.warningBg, color: T.warning, accent: T.warning },
 };
 
 function InfoPanel({ children, variant = "dark" }) {
@@ -16,7 +16,7 @@ function InfoPanel({ children, variant = "dark" }) {
         background: theme.bg,
         color: theme.color,
         borderRadius: T.rMd,
-        border: `0.5px solid ${theme.border}`,
+        borderLeft: theme.accent ? `4px solid ${theme.accent}` : "none",
         padding: T.sp4,
       }}
     >

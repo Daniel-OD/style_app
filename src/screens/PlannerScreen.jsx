@@ -6,7 +6,7 @@ import { outfits } from "../data/outfits";
 import { Icon, InfoPanel, LabelRow, PillTabs } from "../components/ui";
 
 function PlannerScreen() {
-  const [occasion, setOccasion] = useState("business");
+  const [occasion, setOccasion] = useState("Business Casual");
   const [weather, setWeather] = useState("indoor");
 
   const match = useMemo(
@@ -27,14 +27,14 @@ function PlannerScreen() {
 
       <PillTabs
         ariaLabel="Ocazie"
-        options={occasions.filter((item) => item.id !== "all").map((item) => ({ id: item.id, label: item.label }))}
+        options={occasions.filter((item) => item.id !== "Toate").map((item) => ({ id: item.id, label: item.label, iconName: item.iconName }))}
         value={occasion}
         onChange={setOccasion}
       />
 
       <PillTabs
         ariaLabel="Vreme"
-        options={weatherOptions.map((item) => ({ id: item.id, label: item.label }))}
+        options={weatherOptions.map((item) => ({ id: item.id, label: item.label, iconName: item.iconName }))}
         value={weather}
         onChange={setWeather}
       />

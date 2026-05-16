@@ -145,6 +145,14 @@ const LEGACY_META = {
   "smart-mover": { id: "E", iconName: "mover" },
 };
 
+const OCCASION_MAP = {
+  office: "Prezentare",
+  casual: "Teambuilding",
+  event: "Petrecere",
+  weekend: "City Break",
+  "smart-casual": "Business Casual",
+};
+
 export const outfits = OUTFITS.map((outfit) => ({
   id: LEGACY_META[outfit.id]?.id || outfit.id,
   iconName: LEGACY_META[outfit.id]?.iconName || "outfits",
@@ -158,7 +166,7 @@ export const outfits = OUTFITS.map((outfit) => ({
   figure: outfit.figure,
   tips: outfit.tips,
   avoid: outfit.avoid,
-  cats: [outfit.occasion],
+  cats: [OCCASION_MAP[outfit.occasion] || outfit.occasion],
   colorStory: outfit.notes,
   versions: [
     {

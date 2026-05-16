@@ -1,4 +1,4 @@
-const P = {
+export const P = {
   ink900: "#1a1918",
   ink800: "#252522",
   ink600: "#5d5a52",
@@ -71,6 +71,7 @@ export const T = {
   successBg: "#eef5ed",
   dangerBg: "#fdf0f0",
   warningBg: "#faf4e8",
+  infoBg: "#edf3fa",
 };
 
 export const FIG = {
@@ -94,7 +95,6 @@ export const styles = {
     background: T.bgCard,
     borderRadius: T.rMd,
     boxShadow: T.shadowRaised,
-    border: `0.5px solid ${T.border}`,
     padding: T.sp4,
   },
 };
