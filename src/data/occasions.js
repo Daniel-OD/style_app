@@ -1,15 +1,13 @@
-export const occasions = [
-  { id: "all", label: "Toate", iconName: "outfits" },
-  { id: "business", label: "Business", iconName: "business" },
-  { id: "conference", label: "Conferință", iconName: "conference" },
-  { id: "workshop", label: "Workshop", iconName: "workshop" },
-  { id: "teambuilding", label: "Team", iconName: "teambuilding" },
-  { id: "brunch", label: "Brunch", iconName: "brunch" },
-  { id: "date", label: "Date", iconName: "date" },
-  { id: "dinner", label: "Cină", iconName: "dinner" },
-  { id: "citybreak", label: "City Break", iconName: "citybreak" },
-  { id: "dayout", label: "Zi în oraș", iconName: "dayout" },
+export const OCCASIONS = [
+  { id: "all", label: "Toate" },
+  { id: "office", label: "Prezentare" },
+  { id: "casual", label: "Teambuilding" },
+  { id: "event", label: "Cină / Date" },
+  { id: "weekend", label: "City Break" },
+  { id: "smart-casual", label: "Workshop" },
 ];
+
+export const occasions = OCCASIONS;
 
 export const weatherOptions = [
   { id: "indoor", label: "Indoor", iconName: "indoor" },

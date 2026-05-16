@@ -1,9 +1,8 @@
-import React, { Suspense, lazy, useState } from "react";
+import { Suspense, lazy, useState } from "react";
 import { AppShell } from "./app/AppShell";
 import { T } from "./design/tokens";
-import { TABS } from "./config/navigation";
 
-const SCREENS = {
+const SCREEN_MAP = {
   outfituri: lazy(() => import("./screens/OutfituriScreen")),
   planner: lazy(() => import("./screens/PlannerScreen")),
   upgrade: lazy(() => import("./screens/UpgradeScreen")),
@@ -13,13 +12,19 @@ const SCREENS = {
 
 export default function App() {
   const [tab, setTab] = useState("outfituri");
-  const Screen = SCREENS[tab];
+  const ActiveScreen = SCREEN_MAP[tab];
+
   return (
     <AppShell tab={tab} setTab={setTab}>
-      <Suspense fallback={<div style={{ padding: T.sp8, color: T.textMuted }}>Se încarcă...</div>}>
-        <Screen />
+      <Suspense
+        fallback={
+          <div style={{ padding: 40, color: T.textMuted, fontFamily: T.fontBody, fontSize: T.textBase }}>
+            Se încarcă...
+          </div>
+        }
+      >
+        <ActiveScreen />
       </Suspense>
     </AppShell>
   );
 }
-
