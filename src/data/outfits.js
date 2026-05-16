@@ -137,12 +137,17 @@ export const OUTFITS = [
   },
 ];
 
-const LEGACY_IDS = ["A", "B", "C", "D", "E"];
-const ICON_NAMES = ["presenter", "minimal", "evening", "layered", "mover"];
+const LEGACY_META = {
+  presenter: { id: "A", iconName: "presenter" },
+  "minimal-pro": { id: "B", iconName: "minimal" },
+  "evening-edit": { id: "C", iconName: "evening" },
+  "layered-casual": { id: "D", iconName: "layered" },
+  "smart-mover": { id: "E", iconName: "mover" },
+};
 
-export const outfits = OUTFITS.map((outfit, index) => ({
-  id: LEGACY_IDS[index] || outfit.id,
-  iconName: ICON_NAMES[index] || "outfits",
+export const outfits = OUTFITS.map((outfit) => ({
+  id: LEGACY_META[outfit.id]?.id || outfit.id,
+  iconName: LEGACY_META[outfit.id]?.iconName || "outfits",
   name: outfit.name,
   score: outfit.score,
   occasion: outfit.occasion,

@@ -34,7 +34,7 @@ const PillTabs = ({ items, options, active, value, onChange, ariaLabel = "Filtre
               fontSize: T.textSm,
               fontWeight: T.weightMedium,
               fontFamily: T.fontBody,
-              transition: "all 160ms ease",
+              transition: "background-color 160ms ease, color 160ms ease",
               minHeight: 44,
             }}
           >
