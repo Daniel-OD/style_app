@@ -1,46 +1,26 @@
 import { FIG } from "../../design/tokens";
+import { motion as motionUtils } from "../../design/motion";
 
-const T = "fill 300ms ease";
+const FILL_TRANSITION = { transition: motionUtils.safeTransition("fill 300ms ease") };
 
 function Figure({ f, size = 130 }) {
-  const fig = f || {};
-  const layer  = fig.layer  || fig.top   || FIG.neutralSoft;
-  const top    = fig.top    || FIG.neutral;
-  const bottom = fig.bottom || FIG.neutralDeep;
-  const shoes  = fig.shoes  || FIG.neutralDeep;
-  const head   = FIG.neutralSoft;
+  const figure = f || {};
+  const layerFill = figure.layer || figure.shirt || FIG.neutralSoft;
+  const topFill = figure.top || FIG.neutral;
+  const bottomFill = figure.bottom || FIG.neutralDeep;
+  const shoesFill = figure.shoes || FIG.neutralDeep;
 
   return (
-    <svg
-      width={size}
-      height={size * 2.15}
-      viewBox="0 0 100 215"
-      aria-hidden="true"
-      focusable="false"
-      style={{ display: "block", margin: "0 auto" }}
-    >
-      {/* ── Bottom — trousers ── */}
-      <rect x="27" y="110" width="19" height="86" rx="9.5" fill={bottom} style={{ transition: T }} />
-      <rect x="54" y="110" width="19" height="86" rx="9.5" fill={bottom} style={{ transition: T }} />
-
-      {/* ── Top — inner shirt / polo ── */}
-      <rect x="28" y="36" width="44" height="78" rx="12" fill={top} style={{ transition: T }} />
-
-      {/* ── Layer — outer jacket / overshirt (widest, over top) ── */}
-      <rect x="16" y="34" width="68" height="80" rx="16" fill={layer} style={{ transition: T }} />
-
-      {/* ── Inner collar panel — top visible through open layer ── */}
-      <rect x="36" y="34" width="28" height="36" rx="10" fill={top} style={{ transition: T }} />
-
-      {/* ── Neck ── */}
-      <rect x="44" y="25" width="12" height="14" rx="5" fill={head} style={{ transition: T }} />
-
-      {/* ── Head — plain abstract oval, no face ── */}
-      <ellipse cx="50" cy="16" rx="9" ry="10.5" fill={head} style={{ transition: T }} />
-
-      {/* ── Shoes ── */}
-      <rect x="23" y="191" width="25" height="10" rx="5" fill={shoes} style={{ transition: T }} />
-      <rect x="52" y="191" width="25" height="10" rx="5" fill={shoes} style={{ transition: T }} />
+    <svg width={size} height={size * 1.42} viewBox="0 0 120 180" aria-hidden="true" focusable="false" style={{ display: "block", margin: "0 auto" }}>
+      <rect x="30" y="20" width="60" height="112" rx="30" fill={layerFill} style={FILL_TRANSITION} />
+      <rect x="38" y="34" width="44" height="58" rx="20" fill={topFill} style={FILL_TRANSITION} />
+      <rect x="42" y="96" width="16" height="48" rx="8" fill={bottomFill} style={FILL_TRANSITION} />
+      <rect x="62" y="96" width="16" height="48" rx="8" fill={bottomFill} style={FILL_TRANSITION} />
+      <rect x="36" y="140" width="24" height="9" rx="4.5" fill={shoesFill} style={FILL_TRANSITION} />
+      <rect x="60" y="140" width="24" height="9" rx="4.5" fill={shoesFill} style={FILL_TRANSITION} />
+      <rect x="34" y="23" width="52" height="16" rx="8" fill={FIG.neutralSoft} opacity={FIG.overlayOpacity} />
+      <rect x="41" y="103" width="38" height="1.5" rx="0.75" fill={FIG.neutralSoft} opacity={FIG.separatorOpacity} />
+      {figure.accent ? <rect x="34" y="46" width="6" height="44" rx="3" fill={figure.accent} style={FILL_TRANSITION} /> : null}
     </svg>
   );
 }
