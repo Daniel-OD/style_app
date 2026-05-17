@@ -2,6 +2,13 @@ export const OUTFITS = [
   {
     id: "presenter",
     name: "The Presenter",
+    energy: "Autoritate calmă",
+    impression:
+      "Pare competent fără rigiditate și relaxat fără neglijență.",
+    styleVoice:
+      "Italian smart casual cu tonuri terestre și contrast moale.",
+    bestFor: ["Workshop", "Prezentare", "Cină business casual"],
+    avoidIf: ["Eveniment black tie", "Caniculă agresivă"],
     occasion: "office",
     season: "all-season",
     score: 9,
@@ -12,7 +19,7 @@ export const OUTFITS = [
       "Curea maro",
     ],
     notes:
-      "Gulerul mandarin dă autoritate vizuală fără să fie corporate. Chino bej + boots maro = paletă terestră perfectă.",
+      "Olive + bej + suede maro creează autoritate caldă fără rigiditate corporate.",
     palette: ["#64724b", "#d9c2a8", "#6f4a2b", "#f0e9d8"],
     figure: {
       top: "#64724b",
@@ -21,8 +28,8 @@ export const OUTFITS = [
       shoes: "#6f4a2b",
     },
     tips: [
-      "Cămașa călcată obligatoriu — ridurile o sabotează complet",
-      "Mâneci rulate la jumătate pentru look mai relaxat",
+      "Cămașa călcată obligatoriu",
+      "Mâneci rulate la jumătate",
       "French tuck pentru siluetă mai curată",
     ],
     avoid: ["Sneakers sport", "Cămașă șifonată"],
@@ -30,6 +37,13 @@ export const OUTFITS = [
   {
     id: "minimal-pro",
     name: "The Minimal Pro",
+    energy: "Competență liniștită",
+    impression:
+      "Transmite control și claritate fără să pară că încearcă prea mult.",
+    styleVoice:
+      "Minimalism masculin modern cu influențe nordice și layering discret.",
+    bestFor: ["Brunch", "Office casual", "Întâlniri relaxate"],
+    avoidIf: ["Evenimente foarte formale"],
     occasion: "casual",
     season: "all-season",
     score: 8.5,
@@ -38,7 +52,7 @@ export const OUTFITS = [
       "Pantalon chino bej",
       "Desert boots maro suede",
     ],
-    notes: "Cea mai versatilă combinație din garderobă. Polo knit = smart fără efort.",
+    notes: "Polo knit olive creează un smart casual foarte controlat și modern.",
     palette: ["#5a6844", "#d9c2a8", "#f0e9d8", "#6f4a2b"],
     figure: {
       top: "#5a6844",
@@ -46,16 +60,19 @@ export const OUTFITS = [
       bottom: "#d9c2a8",
       shoes: "#6f4a2b",
     },
-    tips: [
-      "1-2 nasturi deschiși — mai relaxat, mai modern",
-      "Nu băga polo-ul în pantaloni — lasă-l să cadă natural",
-      "Scuturat bine înainte de purtat",
-    ],
-    avoid: ["Overshirt olive în aceeași nuanță", "Pantaloni jogger gri"],
+    tips: ["1-2 nasturi deschiși", "Lasă polo-ul să cadă natural"],
+    avoid: ["Joggeri sport", "Overshirt identic cromatic"],
   },
   {
     id: "evening-edit",
     name: "The Evening Edit",
+    energy: "Atenție controlată",
+    impression:
+      "Atrage atenția prin contrast și proporții, nu prin agresivitate vizuală.",
+    styleVoice:
+      "Evening smart casual european cu accent pe textură și ritm cromatic.",
+    bestFor: ["Cină", "Date", "Petrecere elegantă"],
+    avoidIf: ["Evenimente ultra conservative"],
     occasion: "event",
     season: "all-season",
     score: 8,
@@ -65,7 +82,7 @@ export const OUTFITS = [
       "Desert boots maro suede",
     ],
     notes:
-      "Caroul preia rolul de statement piece. Albul îl lasă să respire. Boots-urile ancorează în smart casual.",
+      "Caroul devine statement piece, iar quarter-zip-ul păstrează echilibrul vizual.",
     palette: ["#f5f5f0", "#1e2d4a", "#d9c2a8", "#6f4a2b"],
     figure: {
       top: "#f0ede8",
@@ -73,16 +90,19 @@ export const OUTFITS = [
       bottom: "#7a8a6a",
       shoes: "#6f4a2b",
     },
-    tips: [
-      "Verifică pata de pe quarter-zip înainte",
-      "Nu adăuga alt print sau dungi",
-      "Scoate scamele de pe pantaloni",
-    ],
-    avoid: ["Carouri + dungi simultan", "Sneakers albi sport"],
+    tips: ["Nu adăuga alt print", "Curăță scamele înainte"],
+    avoid: ["Sneakers sport foarte chunky"],
   },
   {
     id: "layered-casual",
     name: "The Layered Casual",
+    energy: "Relaxare creativă",
+    impression:
+      "Pare spontan și creativ fără să alunece în dezordine vizuală.",
+    styleVoice:
+      "Layering relaxat inspirat din editorialele de weekend contemporane.",
+    bestFor: ["City Break", "Cafe hopping", "Weekend urban"],
+    avoidIf: ["Meeting formal"],
     occasion: "weekend",
     season: "primăvară-toamnă",
     score: 7.5,
@@ -93,7 +113,7 @@ export const OUTFITS = [
       "Sneakers crem suede",
     ],
     notes:
-      "Cel mai relaxat outfit. Layering cu overshirt deschis funcționează bine. Paleta caldă și echilibrată.",
+      "Overshirt-ul olive aduce structură peste o bază foarte relaxată.",
     palette: ["#c4956a", "#64724b", "#7a9ab5", "#f0e9d8"],
     figure: {
       top: "#e8d5b8",
@@ -101,16 +121,19 @@ export const OUTFITS = [
       bottom: "#7a9ab5",
       shoes: "#e8e0d0",
     },
-    tips: [
-      "Rulează mânecile overshirt-ului — arată mai intenționat",
-      "Verifică blugi să nu aibă pete vizibile",
-      "Șterge sneakers cu o cârpă umedă înainte",
-    ],
-    avoid: ["Overshirt + polo olive aceeași nuanță", "Dungi + carouri simultan"],
+    tips: ["Rulează mânecile", "Curăță sneakers înainte"],
+    avoid: ["Prea multe pattern-uri simultan"],
   },
   {
     id: "smart-mover",
     name: "The Smart Mover",
+    energy: "Flexibilitate inteligentă",
+    impression:
+      "Se adaptează ușor între casual și smart fără să piardă coerența.",
+    styleVoice:
+      "Smart casual mobil cu contrast soft și energie contemporană.",
+    bestFor: ["Business Casual", "Conferință", "Networking"],
+    avoidIf: ["Dress code ultra formal"],
     occasion: "smart-casual",
     season: "all-season",
     score: 7,
@@ -120,7 +143,7 @@ export const OUTFITS = [
       "Sneakers crem suede",
     ],
     notes:
-      "Combinație îndrăzneață dar coerentă. Mandarin olive + carouri funcționează pentru că paleta e terestră.",
+      "Mandarin olive + carouri funcționează datorită paletei calde și controlate.",
     palette: ["#64724b", "#8a9478", "#1e2d4a", "#f0e9d8"],
     figure: {
       top: "#64724b",
@@ -128,12 +151,8 @@ export const OUTFITS = [
       bottom: "#7a8a6a",
       shoes: "#e8e0d0",
     },
-    tips: [
-      "Cămașa călcată obligatoriu",
-      "Lasă cămașa pe afară, nebăgată în pantaloni",
-      "Cea mai sensibilă combinație la fier de călcat",
-    ],
-    avoid: ["Pantofi formali negri", "Dungi cu carouri"],
+    tips: ["Cămașa trebuie impecabil călcată"],
+    avoid: ["Pantofi formali negri"],
   },
 ];
 
@@ -157,6 +176,11 @@ export const outfits = OUTFITS.map((outfit) => ({
   id: LEGACY_META[outfit.id]?.id || outfit.id,
   iconName: LEGACY_META[outfit.id]?.iconName || "outfits",
   name: outfit.name,
+  energy: outfit.energy,
+  impression: outfit.impression,
+  styleVoice: outfit.styleVoice,
+  bestFor: outfit.bestFor,
+  avoidIf: outfit.avoidIf,
   score: outfit.score,
   occasion: outfit.occasion,
   season: outfit.season,
