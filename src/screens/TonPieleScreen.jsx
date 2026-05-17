@@ -3,7 +3,6 @@ import { T, styles } from "../design/tokens";
 import { OUTFITS } from "../data/outfits";
 import { Icon, InfoPanel, TipList, SwatchGrid } from "../components/ui";
 import {
-  analyzeImage,
   TONE_PROFILES,
   MANUAL_TONES,
   extractSkinColor,
@@ -66,10 +65,19 @@ function UploadZone({ onImage }) {
 
   return (
     <div
+      role="button"
+      tabIndex={0}
+      aria-label="Adaugă o poză — apasă sau trage o imagine"
       onDragOver={(e) => { e.preventDefault(); setDrag(true); }}
       onDragLeave={() => setDrag(false)}
       onDrop={onDrop}
       onClick={() => inputRef.current?.click()}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          inputRef.current?.click();
+        }
+      }}
       style={{
         border: `2px dashed ${drag ? T.bgInk : T.border}`,
         borderRadius: T.rLg,
@@ -118,6 +126,7 @@ function ManualSelector({ selected, onSelect }) {
         <button
           key={t.id}
           type="button"
+          aria-pressed={selected === t.id}
           onClick={() => onSelect(t.id)}
           style={{
             border: `2px solid ${selected === t.id ? T.bgInk : T.border}`,
@@ -429,7 +438,7 @@ export default function TonPieleScreen() {
               )}
               {error && (
                 <InfoPanel variant="danger">
-                  <div style={{ fontSize: T.textSm }}>{error}</div>
+                  <div role="alert" style={{ fontSize: T.textSm }}>{error}</div>
                 </InfoPanel>
               )}
               <div style={{

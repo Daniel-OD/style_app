@@ -87,18 +87,50 @@ export const FIG = {
 };
 
 export const scoreSignal = (score) => {
-  if (score >= 8) return { level: "high", color: T.success, bg: T.successBg, label: "Excelent" };
-  if (score >= 7) return { level: "mid", color: T.warning, bg: T.warningBg, label: "Bun" };
-  return { level: "low", color: T.textMuted, bg: T.bgSubtle, label: "Acceptabil" };
+  if (score >= 8) return "high";
+  if (score >= 7) return "mid";
+  return "low";
 };
 
-export const scoreColor = (score) => scoreSignal(score).color;
+export const scoreColor = (score) => {
+  const level = scoreSignal(score);
+  if (level === "high") return T.success;
+  if (level === "mid") return T.warning;
+  return T.textMuted;
+};
 
 export const styles = {
   card: {
     background: T.bgCard,
     borderRadius: T.rMd,
     boxShadow: T.shadowRaised,
+    border: `0.5px solid ${T.border}`,
     padding: T.sp4,
+  },
+  cardRaised: {
+    background: T.bgCard,
+    borderRadius: T.rLg,
+    boxShadow: T.shadowRaised,
+  },
+  microLabel: {
+    fontSize: T.textXs,
+    textTransform: "uppercase",
+    letterSpacing: T.trackingWidest,
+    color: T.textMuted,
+    fontWeight: T.weightSemi,
+    margin: 0,
+  },
+  sectionTitle: {
+    fontFamily: T.fontDisplay,
+    fontSize: T.textLg,
+    fontWeight: T.weightSemi,
+    color: T.textPrimary,
+    margin: 0,
+  },
+  page: {
+    minHeight: "100vh",
+    background: T.bg,
+    color: T.textPrimary,
+    fontFamily: T.fontBody,
   },
 };

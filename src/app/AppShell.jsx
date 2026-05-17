@@ -40,8 +40,8 @@ function AppShell({ tab, setTab, children }) {
           <nav style={{ display: "flex", gap: T.sp2, flexWrap: "wrap" }} aria-label="Navigație principală">
             {TABS.map((item) => {
               const isActive = item.id === tab;
-              return (
-                <button key={item.id} type="button" onClick={() => setTab(item.id)} style={navButton(isActive)}>
+                return (
+                <button key={item.id} type="button" aria-current={isActive ? "page" : undefined} onClick={() => setTab(item.id)} style={navButton(isActive)}>
                   <Icon name={item.iconName} size={16} />
                   {item.label}
                 </button>
