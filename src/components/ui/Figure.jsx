@@ -6,6 +6,13 @@ const figureMotion = {
   transition: motion.safeTransition("fill 300ms ease, opacity 300ms ease"),
 };
 
+const COMPACT_VIEW_BOX = "28 34 124 168";
+const ARM_OPACITY = 0.55;
+const TORSO_HIGHLIGHT = "rgba(255,255,255,.12)";
+const TORSO_SHADOW = "rgba(26,25,24,.16)";
+const LEG_HIGHLIGHT = "rgba(255,255,255,.1)";
+const LEG_SHADOW = "rgba(26,25,24,.18)";
+
 /**
  * Compact editorial outfit board.
  * Keeps the clothing color relationship visible without creating tall mobile whitespace.
@@ -14,16 +21,16 @@ const figureMotion = {
  * @param {{top?: string, bottom?: string, socks?: string, shoes?: string, belt?: string, layer?: string | null, accent?: string}} props.f
  */
 function Figure({ f }) {
-  const id = useId().replace(/[^a-zA-Z0-9_-]/g, "");
+  const uniqueId = useId().replace(/[^a-zA-Z0-9_-]/g, "");
   const figure = f || {};
   const layerFill = figure.layer || null;
   const topFill = figure.top || FIG.neutral;
   const bottomFill = figure.bottom || FIG.neutralDeep;
   const shoesFill = figure.shoes || FIG.neutralDeep;
   const accentFill = figure.belt || figure.accent || shoesFill;
-  const torsoId = `torsoGradient-${id}`;
-  const legId = `legGradient-${id}`;
-  const grainId = `grainOverlay-${id}`;
+  const torsoId = `torsoGradient-${uniqueId}`;
+  const legId = `legGradient-${uniqueId}`;
+  const grainId = `grainOverlay-${uniqueId}`;
 
   return (
     <div
@@ -41,7 +48,7 @@ function Figure({ f }) {
       }}
     >
       <svg
-        viewBox="28 34 124 168"
+        viewBox={COMPACT_VIEW_BOX}
         role="presentation"
         style={{
           width: "min(100%, var(--app-figure-size))",
@@ -52,12 +59,12 @@ function Figure({ f }) {
       >
         <defs>
           <linearGradient id={torsoId} x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="rgba(255,255,255,.12)" />
-            <stop offset="100%" stopColor="rgba(26,25,24,.16)" />
+            <stop offset="0%" stopColor={TORSO_HIGHLIGHT} />
+            <stop offset="100%" stopColor={TORSO_SHADOW} />
           </linearGradient>
           <linearGradient id={legId} x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="rgba(255,255,255,.1)" />
-            <stop offset="100%" stopColor="rgba(26,25,24,.18)" />
+            <stop offset="0%" stopColor={LEG_HIGHLIGHT} />
+            <stop offset="100%" stopColor={LEG_SHADOW} />
           </linearGradient>
           <radialGradient id={grainId} cx="50%" cy="30%" r="75%">
             <stop offset="0%" stopColor="rgba(255,255,255,.08)" />
@@ -65,11 +72,11 @@ function Figure({ f }) {
           </radialGradient>
         </defs>
 
-        <circle cx="90" cy="49" r="9" style={{ ...figureMotion, fill: "#cdb8a3" }} />
-        <rect x="84" y="57" width="12" height="7" rx="4" style={{ ...figureMotion, fill: "#c2ad97" }} />
+        <circle cx="90" cy="49" r="9" style={{ ...figureMotion, fill: FIG.skin }} />
+        <rect x="84" y="57" width="12" height="7" rx="4" style={{ ...figureMotion, fill: FIG.skin, opacity: 0.9 }} />
 
-        <path d="M62 72 L56 106 Q55 111 60 112 L67 108 L71 78 Z" style={{ ...figureMotion, fill: FIG.neutral, opacity: 0.55 }} />
-        <path d="M118 72 L124 106 Q125 111 120 112 L113 108 L109 78 Z" style={{ ...figureMotion, fill: FIG.neutral, opacity: 0.55 }} />
+        <path d="M62 72 L56 106 Q55 111 60 112 L67 108 L71 78 Z" style={{ ...figureMotion, fill: FIG.neutral, opacity: ARM_OPACITY }} />
+        <path d="M118 72 L124 106 Q125 111 120 112 L113 108 L109 78 Z" style={{ ...figureMotion, fill: FIG.neutral, opacity: ARM_OPACITY }} />
 
         {layerFill ? (
           <path
