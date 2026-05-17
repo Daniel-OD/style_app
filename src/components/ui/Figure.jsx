@@ -1,21 +1,24 @@
 import { FIG } from "../../design/tokens";
 
-function Figure({ f, size = 130, skin, hair }) {
+function Figure({ f, size = 130 }) {
   const figure = f || {};
-  const skinFill = skin || FIG.skin;
-  const hairFill = hair || FIG.hair;
+  const layerFill = figure.layer || figure.shirt || FIG.neutralSoft;
+  const topFill = figure.top || FIG.neutral;
+  const bottomFill = figure.bottom || FIG.neutralDeep;
+  const shoesFill = figure.shoes || FIG.neutralDeep;
+  const fillTransition = { transition: "fill 300ms ease" };
 
   return (
     <svg width={size} height={size * 1.42} viewBox="0 0 120 180" aria-hidden="true" focusable="false" style={{ display: "block", margin: "0 auto" }}>
-      <rect x="46" y="6" width="28" height="8" rx="4" fill={hairFill} />
-      <circle cx="60" cy="22" r="12" fill={skinFill} />
-      <rect x="35" y="36" width="50" height="18" rx="8" fill={figure.top || FIG.neutral} />
-      <rect x="38" y="54" width="44" height="36" rx="8" fill={figure.layer || figure.shirt || FIG.neutralSoft} />
-      <rect x="40" y="88" width="16" height="52" rx="8" fill={figure.bottom || FIG.neutralDeep} />
-      <rect x="64" y="88" width="16" height="52" rx="8" fill={figure.bottom || FIG.neutralDeep} />
-      <rect x="36" y="138" width="24" height="10" rx="5" fill={figure.shoes || FIG.neutralDeep} />
-      <rect x="60" y="138" width="24" height="10" rx="5" fill={figure.shoes || FIG.neutralDeep} />
-      {figure.accent ? <rect x="30" y="58" width="8" height="28" rx="4" fill={figure.accent} /> : null}
+      <rect x="30" y="20" width="60" height="112" rx="30" fill={layerFill} style={fillTransition} />
+      <rect x="38" y="34" width="44" height="58" rx="20" fill={topFill} style={fillTransition} />
+      <rect x="42" y="96" width="16" height="48" rx="8" fill={bottomFill} style={fillTransition} />
+      <rect x="62" y="96" width="16" height="48" rx="8" fill={bottomFill} style={fillTransition} />
+      <rect x="36" y="140" width="24" height="9" rx="4.5" fill={shoesFill} style={fillTransition} />
+      <rect x="60" y="140" width="24" height="9" rx="4.5" fill={shoesFill} style={fillTransition} />
+      <rect x="34" y="23" width="52" height="16" rx="8" fill="#ffffff" opacity="0.16" />
+      <rect x="41" y="103" width="38" height="1.5" rx="0.75" fill="#ffffff" opacity="0.14" />
+      {figure.accent ? <rect x="34" y="46" width="6" height="44" rx="3" fill={figure.accent} style={fillTransition} /> : null}
     </svg>
   );
 }
