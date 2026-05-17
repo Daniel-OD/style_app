@@ -21,16 +21,16 @@ const LEG_SHADOW = "rgba(26,25,24,.18)";
  * @param {{top?: string, bottom?: string, socks?: string, shoes?: string, belt?: string, layer?: string | null, accent?: string}} props.f
  */
 function Figure({ f }) {
-  const uniqueId = useId().replace(/[^a-zA-Z0-9_-]/g, "");
+  const svgSafeId = useId().replace(/[^a-zA-Z0-9_-]/g, "");
   const figure = f || {};
   const layerFill = figure.layer || null;
   const topFill = figure.top || FIG.neutral;
   const bottomFill = figure.bottom || FIG.neutralDeep;
   const shoesFill = figure.shoes || FIG.neutralDeep;
   const accentFill = figure.belt || figure.accent || shoesFill;
-  const torsoId = `torsoGradient-${uniqueId}`;
-  const legId = `legGradient-${uniqueId}`;
-  const grainId = `grainOverlay-${uniqueId}`;
+  const torsoId = `torsoGradient-${svgSafeId}`;
+  const legId = `legGradient-${svgSafeId}`;
+  const grainId = `grainOverlay-${svgSafeId}`;
 
   return (
     <div
@@ -50,6 +50,7 @@ function Figure({ f }) {
       <svg
         viewBox={COMPACT_VIEW_BOX}
         role="presentation"
+        aria-hidden="true"
         style={{
           width: "min(100%, var(--app-figure-size))",
           maxHeight: "var(--app-figure-size)",
