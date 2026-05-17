@@ -75,7 +75,7 @@ export function classifyTone(hsl) {
  * @property {string} id
  * @property {string} label
  * @property {string} hex - culoarea reprezentativă
- * @property {string} description
+ * @property {string} description - scurt rezumat clar și prietenos pentru utilizator
  * @property {string[]} best - hex-uri de culori recomandate
  * @property {string[]} avoid - hex-uri de evitat
  * @property {string[]} outfitIds - outfit IDs recomandate
@@ -174,7 +174,7 @@ export function extractSkinColor(source) {
     canvas.height = h;
     ctx.drawImage(source, 0, 0);
 
-    // Zona centrală — 60% din imagine (evităm fundalul)
+    // Zona centrală — decupăm 60% din lățime și 60% din înălțime pentru a evita fundalul
     const margin = 0.2;
     const x = Math.floor(w * margin);
     const y = Math.floor(h * margin);
@@ -185,7 +185,7 @@ export function extractSkinColor(source) {
 
     let rSum = 0, gSum = 0, bSum = 0, count = 0;
 
-    // Sample fiecare al 4-lea pixel pentru viteză
+    // Sample fiecare al 4-lea pixel pentru viteză (16 bytes RGBA = 4 pixeli)
     for (let i = 0; i < data.length; i += 16) {
       const r = data[i];
       const g = data[i + 1];
