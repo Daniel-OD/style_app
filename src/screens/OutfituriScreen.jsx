@@ -3,6 +3,69 @@ import { occasions } from "../data/occasions";
 import { useOutfitSelection } from "../hooks/useOutfitSelection";
 import { Figure, InfoPanel, LabelRow, PillTabs, ScoreBadge, SwatchGrid, TipList, Icon } from "../components/ui";
 
+const microLabel = {
+  margin: 0,
+  color: T.textMuted,
+  fontSize: T.textXs,
+  letterSpacing: T.trackingWidest,
+  textTransform: "uppercase",
+};
+
+const bodyText = {
+  margin: 0,
+  fontSize: T.textSm,
+  color: T.textSecondary,
+  lineHeight: 1.6,
+};
+
+const tagBase = {
+  borderRadius: T.rFull,
+  padding: `${T.sp1}px ${T.sp3}px`,
+  fontSize: T.textXs,
+  fontWeight: T.weightMedium,
+  letterSpacing: "0.03em",
+};
+
+const tagFor = {
+  ...tagBase,
+  background: T.successBg,
+  color: T.success,
+  border: `0.5px solid ${T.success}`,
+};
+
+const tagAvoid = {
+  ...tagBase,
+  background: T.dangerBg,
+  color: T.danger,
+  border: `0.5px solid ${T.danger}`,
+};
+
+function StoryBlock({ label, text }) {
+  if (!text) return null;
+  return (
+    <div style={{ display: "grid", gap: T.sp1 }}>
+      <p style={microLabel}>{label}</p>
+      <p style={bodyText}>{text}</p>
+    </div>
+  );
+}
+
+function TagList({ label, items, tagStyle }) {
+  if (!items?.length) return null;
+  return (
+    <div style={{ display: "grid", gap: T.sp2 }}>
+      <p style={microLabel}>{label}</p>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: T.sp1 }}>
+        {items.map((item) => (
+          <span key={item} style={tagStyle}>
+            {item}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function OutfituriScreen() {
   const { occ, setOcc, activeId, activeV, detailOpen, select, setActiveV, toggleDetail, visibleOutfits: visible } = useOutfitSelection();
 
@@ -12,9 +75,7 @@ function OutfituriScreen() {
   return (
     <section style={{ display: "grid", gap: T.sp5 }}>
       <div style={{ display: "grid", gap: T.sp2 }}>
-        <p style={{ margin: 0, color: T.textMuted, fontSize: T.textXs, letterSpacing: T.trackingWidest, textTransform: "uppercase" }}>
-          Outfituri
-        </p>
+        <p style={microLabel}>Outfituri</p>
         <h2 style={{ margin: 0, fontFamily: T.fontDisplay, fontSize: "var(--app-section-title-size)", fontWeight: T.weightSemi, lineHeight: 1.15 }}>Browser de ținute</h2>
       </div>
 
@@ -75,6 +136,24 @@ function OutfituriScreen() {
             />
 
             <Figure f={version.fig} />
+
+            {active.energy ? (
+              <div style={{ textAlign: "center" }}>
+                <p
+                  style={{
+                    margin: 0,
+                    fontFamily: T.fontDisplay,
+                    fontSize: T.textMd,
+                    fontWeight: T.weightSemi,
+                    color: T.textPrimary,
+                    lineHeight: 1.3,
+                  }}
+                >
+                  {active.energy}
+                </p>
+              </div>
+            ) : null}
+
             <LabelRow label="Categorie" value={active.cats.join(", ")} size="md" />
             <LabelRow label="Poveste cromatică" value={active.colorStory} size="sm" />
             <SwatchGrid colors={active.palette} columns={4} />
@@ -97,6 +176,10 @@ function OutfituriScreen() {
 
             {detailOpen ? (
               <div style={{ display: "grid", gap: T.sp3 }}>
+                <StoryBlock label="Impresie" text={active.impression} />
+                <StoryBlock label="Voce de stil" text={active.styleVoice} />
+                <TagList label="Recomandat pentru" items={active.bestFor} tagStyle={tagFor} />
+                <TagList label="Evita la" items={active.avoidIf} tagStyle={tagAvoid} />
                 <TipList items={version.pieces} variant="tips" />
                 <TipList items={version.tips} variant="tips" />
                 <TipList items={version.avoid} variant="avoid" />
@@ -114,3 +197,4 @@ function OutfituriScreen() {
 }
 
 export default OutfituriScreen;
+

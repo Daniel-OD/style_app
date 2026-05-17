@@ -41,7 +41,7 @@ function Figure({ f, size = 148, skin = FIG.skin, hair = FIG.hair }) {
       style={{
         display: "block",
         width: "min(100%, var(--app-figure-size, 168px))",
-        maxWidth: size,
+        maxWidth: `var(--app-figure-size, ${size}px)`,
         margin: "0 auto",
       }}
     >

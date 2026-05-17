@@ -44,7 +44,7 @@ function AppShell({ tab, setTab, children }) {
           <h1 style={{ margin: 0, fontFamily: T.fontDisplay, fontSize: "var(--app-title-size)", fontWeight: T.weightSemi, lineHeight: 1.15 }}>
             Asistent de Stil
           </h1>
-          <nav className="app-shell__nav" style={{ display: "flex", gap: T.sp2, flexWrap: "wrap" }} aria-label="Navigație principală">
+          <nav className="app-shell__nav" style={{ display: "flex", gap: T.sp2, overflowX: "auto", flexWrap: "nowrap" }} aria-label="Navigație principală">
             {TABS.map((item) => {
               const isActive = item.id === tab;
               return (
