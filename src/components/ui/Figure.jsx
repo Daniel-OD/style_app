@@ -1,26 +1,92 @@
-import { FIG } from "../../design/tokens";
-import { motion as motionUtils } from "../../design/motion";
+import { FIG, T } from "../../design/tokens";
+import { motion } from "../../design/motion";
 
-const FILL_TRANSITION = { transition: motionUtils.safeTransition("fill 300ms ease") };
+const fillMotion = {
+  transition: motion.safeTransition("fill 300ms ease, opacity 300ms ease, transform 300ms ease"),
+};
 
-function Figure({ f, size = 130 }) {
+/**
+ * Editorial modular outfit silhouette.
+ * Focuses on garment color relationships rather than a cartoon body.
+ *
+ * @param {object} props
+ * @param {{top?: string, bottom?: string, socks?: string, shoes?: string, belt?: string, layer?: string | null, accent?: string}} props.f
+ * @param {number} [props.size=148]
+ * @param {string} [props.skin]
+ * @param {string} [props.hair]
+ */
+function Figure({ f, size = 148, skin = FIG.skin, hair = FIG.hair }) {
   const figure = f || {};
-  const layerFill = figure.layer || figure.shirt || FIG.neutralSoft;
+  const layerFill = figure.layer || figure.top || FIG.neutral;
   const topFill = figure.top || FIG.neutral;
   const bottomFill = figure.bottom || FIG.neutralDeep;
+  const socksFill = figure.socks || FIG.neutralSoft;
   const shoesFill = figure.shoes || FIG.neutralDeep;
+  const beltFill = figure.belt || figure.accent || shoesFill;
+  const hasLayer = Boolean(figure.layer);
 
   return (
-    <svg width={size} height={size * 1.42} viewBox="0 0 120 180" aria-hidden="true" focusable="false" style={{ display: "block", margin: "0 auto" }}>
-      <rect x="30" y="20" width="60" height="112" rx="30" fill={layerFill} style={FILL_TRANSITION} />
-      <rect x="38" y="34" width="44" height="58" rx="20" fill={topFill} style={FILL_TRANSITION} />
-      <rect x="42" y="96" width="16" height="48" rx="8" fill={bottomFill} style={FILL_TRANSITION} />
-      <rect x="62" y="96" width="16" height="48" rx="8" fill={bottomFill} style={FILL_TRANSITION} />
-      <rect x="36" y="140" width="24" height="9" rx="4.5" fill={shoesFill} style={FILL_TRANSITION} />
-      <rect x="60" y="140" width="24" height="9" rx="4.5" fill={shoesFill} style={FILL_TRANSITION} />
-      <rect x="34" y="23" width="52" height="16" rx="8" fill={FIG.neutralSoft} opacity={FIG.overlayOpacity} />
-      <rect x="41" y="103" width="38" height="1.5" rx="0.75" fill={FIG.neutralSoft} opacity={FIG.separatorOpacity} />
-      {figure.accent ? <rect x="34" y="46" width="6" height="44" rx="3" fill={figure.accent} style={FILL_TRANSITION} /> : null}
+    <svg
+      width="100%"
+      height="auto"
+      viewBox="0 0 180 240"
+      aria-hidden="true"
+      focusable="false"
+      preserveAspectRatio="xMidYMid meet"
+      style={{
+        display: "block",
+        width: "min(100%, var(--app-figure-size, 168px))",
+        maxWidth: size,
+        margin: "0 auto",
+      }}
+    >
+      <ellipse cx="90" cy="224" rx="54" ry="7" fill={T.bgSubtle} opacity="0.82" />
+
+      <path
+        d="M71 42c2-19 35-19 38 0 2 13-6 25-19 25S69 55 71 42Z"
+        fill={skin}
+        style={fillMotion}
+      />
+      <path
+        d="M70 42c4-18 28-26 40-9 4 6 5 14 2 22-6-8-15-13-29-12-5 0-9 1-13-1Z"
+        fill={hair}
+        opacity="0.95"
+        style={fillMotion}
+      />
+      <path
+        d="M72 68c10 8 26 8 36 0l6 17H66l6-17Z"
+        fill={skin}
+        opacity="0.88"
+        style={fillMotion}
+      />
+
+      <path
+        d="M51 90c9-17 22-25 39-25s30 8 39 25l-8 72H59L51 90Z"
+        fill={layerFill}
+        opacity={hasLayer ? "1" : "0.2"}
+        style={fillMotion}
+      />
+      <path
+        d="M68 82c6-7 13-10 22-10s16 3 22 10l-8 77H76L68 82Z"
+        fill={topFill}
+        style={fillMotion}
+      />
+      {hasLayer ? (
+        <>
+          <path d="M56 92c7-12 14-19 25-23l-9 90H58L50 96c2-2 4-3 6-4Z" fill={layerFill} opacity="0.94" style={fillMotion} />
+          <path d="M124 92c-7-12-14-19-25-23l9 90h14l8-63c-2-2-4-3-6-4Z" fill={layerFill} opacity="0.94" style={fillMotion} />
+        </>
+      ) : null}
+
+      <path d="M73 159h34v9H73z" fill={beltFill} opacity="0.78" style={fillMotion} />
+      <path d="M74 168h31l9 48H93l-3-34-5 34H64l10-48Z" fill={bottomFill} style={fillMotion} />
+      <path d="M85 183l5-15 3 48h-7l-4-34 3 1Z" fill={socksFill} opacity="0.34" style={fillMotion} />
+      <path d="M62 216c8-3 17-3 26 0l-2 9H56c0-4 2-7 6-9Z" fill={shoesFill} style={fillMotion} />
+      <path d="M94 216c9-3 19-3 27 0 4 2 6 5 6 9H96l-2-9Z" fill={shoesFill} style={fillMotion} />
+
+      <path d="M68 88c-9 18-13 36-13 55" stroke={T.bgCard} strokeWidth="2" strokeLinecap="round" opacity="0.28" fill="none" />
+      <path d="M112 88c9 18 13 36 13 55" stroke={T.bgCard} strokeWidth="2" strokeLinecap="round" opacity="0.28" fill="none" />
+      <path d="M76 93h28" stroke={T.bgCard} strokeWidth="2" strokeLinecap="round" opacity="0.34" fill="none" />
     </svg>
   );
 }
