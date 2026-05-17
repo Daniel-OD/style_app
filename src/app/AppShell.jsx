@@ -48,7 +48,13 @@ function AppShell({ tab, setTab, children }) {
             {TABS.map((item) => {
               const isActive = item.id === tab;
               return (
-                <button key={item.id} type="button" aria-current={isActive ? "page" : undefined} onClick={() => setTab(item.id)} style={navButton(isActive)}>
+                <button
+                  key={item.id}
+                  type="button"
+                  aria-current={isActive ? "page" : undefined}
+                  onClick={() => setTab(item.id)}
+                  style={navButton(isActive)}
+                >
                   <Icon name={item.iconName} size={16} />
                   {item.label}
                 </button>
