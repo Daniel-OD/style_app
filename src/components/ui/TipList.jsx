@@ -25,6 +25,8 @@ function TipList({ items, variant = "tips" }) {
             padding: `${T.sp2}px ${T.sp3}px`,
             lineHeight: 1.5,
             fontSize: T.textSm,
+            minWidth: 0,
+            overflowWrap: "anywhere",
           }}
         >
           <Icon name={theme.icon} size={14} color={theme.color} />

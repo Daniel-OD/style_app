@@ -1,9 +1,17 @@
+import { useId } from "react";
 import { FIG, T } from "../../design/tokens";
 import { motion } from "../../design/motion";
 
-const blockMotion = {
-  transition: motion.safeTransition("background-color 300ms ease, opacity 300ms ease"),
+const figureMotion = {
+  transition: motion.safeTransition("fill 300ms ease, opacity 300ms ease"),
 };
+
+const COMPACT_VIEW_BOX = "28 34 124 168";
+const ARM_OPACITY = 0.55;
+const TORSO_HIGHLIGHT = "rgba(255,255,255,.12)";
+const TORSO_SHADOW = "rgba(26,25,24,.16)";
+const LEG_HIGHLIGHT = "rgba(255,255,255,.1)";
+const LEG_SHADOW = "rgba(26,25,24,.18)";
 
 /**
  * Compact editorial outfit board.
@@ -13,12 +21,16 @@ const blockMotion = {
  * @param {{top?: string, bottom?: string, socks?: string, shoes?: string, belt?: string, layer?: string | null, accent?: string}} props.f
  */
 function Figure({ f }) {
+  const svgSafeId = useId().replace(/[^a-zA-Z0-9_-]/g, "");
   const figure = f || {};
   const layerFill = figure.layer || null;
   const topFill = figure.top || FIG.neutral;
   const bottomFill = figure.bottom || FIG.neutralDeep;
   const shoesFill = figure.shoes || FIG.neutralDeep;
   const accentFill = figure.belt || figure.accent || shoesFill;
+  const torsoId = `torsoGradient-${svgSafeId}`;
+  const legId = `legGradient-${svgSafeId}`;
+  const grainId = `grainOverlay-${svgSafeId}`;
 
   return (
     <div
@@ -28,60 +40,69 @@ function Figure({ f }) {
         minWidth: 0,
         borderRadius: T.rLg,
         background: T.bgSubtle,
-        padding: T.sp3,
-        display: "grid",
-        gap: T.sp2,
+        padding: T.sp2,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
         overflow: "hidden",
       }}
     >
-      <div style={{ display: "grid", gridTemplateColumns: "1.2fr 0.8fr", gap: T.sp2, minHeight: 104 }}>
-        <div style={{ display: "grid", gap: T.sp2, minWidth: 0 }}>
-          {layerFill ? (
-            <div
-              style={{
-                ...blockMotion,
-                minHeight: 30,
-                borderRadius: T.rMd,
-                background: layerFill,
-                boxShadow: "inset 0 0 0 999px rgba(255,255,255,.08)",
-              }}
-            />
-          ) : null}
-          <div
-            style={{
-              ...blockMotion,
-              minHeight: layerFill ? 44 : 78,
-              borderRadius: T.rMd,
-              background: topFill,
-              boxShadow: "inset 0 0 0 999px rgba(255,255,255,.06)",
-            }}
+      <svg
+        viewBox={COMPACT_VIEW_BOX}
+        role="presentation"
+        aria-hidden="true"
+        style={{
+          width: "min(100%, var(--app-figure-size))",
+          maxHeight: "var(--app-figure-size)",
+          height: "auto",
+          display: "block",
+        }}
+      >
+        <defs>
+          <linearGradient id={torsoId} x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor={TORSO_HIGHLIGHT} />
+            <stop offset="100%" stopColor={TORSO_SHADOW} />
+          </linearGradient>
+          <linearGradient id={legId} x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor={LEG_HIGHLIGHT} />
+            <stop offset="100%" stopColor={LEG_SHADOW} />
+          </linearGradient>
+          <radialGradient id={grainId} cx="50%" cy="30%" r="75%">
+            <stop offset="0%" stopColor="rgba(255,255,255,.08)" />
+            <stop offset="100%" stopColor="rgba(255,255,255,0)" />
+          </radialGradient>
+        </defs>
+
+        <circle cx="90" cy="49" r="9" style={{ ...figureMotion, fill: FIG.skin }} />
+        <rect x="84" y="57" width="12" height="7" rx="4" style={{ ...figureMotion, fill: FIG.skin, opacity: 0.9 }} />
+
+        <path d="M62 72 L56 106 Q55 111 60 112 L67 108 L71 78 Z" style={{ ...figureMotion, fill: FIG.neutral, opacity: ARM_OPACITY }} />
+        <path d="M118 72 L124 106 Q125 111 120 112 L113 108 L109 78 Z" style={{ ...figureMotion, fill: FIG.neutral, opacity: ARM_OPACITY }} />
+
+        {layerFill ? (
+          <path
+            d="M57 72 Q90 58 123 72 L120 118 Q112 126 90 128 Q68 126 60 118 Z"
+            style={{ ...figureMotion, fill: layerFill, opacity: 0.92 }}
           />
-          <div
-            style={{
-              ...blockMotion,
-              height: 8,
-              borderRadius: T.rFull,
-              background: accentFill,
-              opacity: 0.72,
-            }}
-          />
-        </div>
-        <div style={{ display: "grid", gap: T.sp2, minWidth: 0 }}>
-          <div
-            style={{
-              ...blockMotion,
-              minHeight: 78,
-              borderRadius: T.rMd,
-              background: bottomFill,
-              boxShadow: "inset 0 0 0 999px rgba(255,255,255,.05)",
-            }}
-          />
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: T.sp2 }}>
-            <div style={{ ...blockMotion, height: 18, borderRadius: T.rFull, background: shoesFill }} />
-            <div style={{ ...blockMotion, height: 18, borderRadius: T.rFull, background: shoesFill }} />
-          </div>
-        </div>
-      </div>
+        ) : null}
+
+        <path d="M63 71 Q90 63 117 71 L114 120 Q90 129 66 120 Z" style={{ ...figureMotion, fill: topFill }} />
+        <path d="M63 71 Q90 63 117 71 L114 120 Q90 129 66 120 Z" fill={`url(#${torsoId})`} style={{ opacity: 0.7 }} />
+        <rect x="66" y="97" width="48" height="6" rx="3" style={{ ...figureMotion, fill: accentFill, opacity: 0.86 }} />
+
+        <path d="M66 103 L114 103 L108 140 L96 150 L84 150 L72 140 Z" style={{ ...figureMotion, fill: bottomFill }} />
+        <path d="M66 103 L114 103 L108 140 L96 150 L84 150 L72 140 Z" fill={`url(#${legId})`} style={{ opacity: 0.68 }} />
+
+        <path d="M82 150 L95 150 L93 188 Q90 191 86 188 Z" style={{ ...figureMotion, fill: bottomFill, opacity: 0.94 }} />
+        <path d="M98 150 L111 150 L108 188 Q104 191 100 188 Z" style={{ ...figureMotion, fill: bottomFill, opacity: 0.94 }} />
+
+        <ellipse cx="88" cy="193" rx="11" ry="4.6" style={{ ...figureMotion, fill: shoesFill }} />
+        <ellipse cx="104" cy="193" rx="11" ry="4.6" style={{ ...figureMotion, fill: shoesFill }} />
+
+        <path d="M70 103 Q90 99 110 103" stroke="rgba(255,255,255,.3)" strokeWidth="0.8" fill="none" />
+        <path d="M95 150 L96 188" stroke="rgba(255,255,255,.28)" strokeWidth="0.75" fill="none" />
+        <rect x="60" y="66" width="60" height="126" rx="32" fill={`url(#${grainId})`} opacity="0.35" />
+      </svg>
     </div>
   );
 }

@@ -4,7 +4,7 @@ import { Accordion, InfoPanel } from "../components/ui";
 
 function ReguliScreen() {
   return (
-    <section style={{ display: "grid", gap: T.sp4 }}>
+    <section style={{ display: "grid", gap: "var(--app-content-gap)", minWidth: 0 }}>
       <div style={{ display: "grid", gap: T.sp2 }}>
         <p style={{ margin: 0, color: T.textMuted, fontSize: T.textXs, letterSpacing: T.trackingWidest, textTransform: "uppercase" }}>
           Reguli

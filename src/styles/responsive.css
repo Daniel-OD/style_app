@@ -12,12 +12,13 @@
   --app-card-padding: clamp(14px, 4vw, 16px);
   --app-title-size: 22px;
   --app-section-title-size: 22px;
+  --app-content-gap: 20px;
   --app-manual-columns: repeat(3, minmax(0, 1fr));
   --tone-result-header-columns: 64px minmax(0, 1fr);
   --tone-recommendation-columns: minmax(0, 1fr) auto;
   --tone-mode-toggle-direction: row;
   --label-row-columns: minmax(0, auto) minmax(0, 1fr);
-  --app-figure-size: 176px;
+  --app-figure-size: 172px;
 }
 
 * {
@@ -77,12 +78,13 @@ canvas {
     --app-card-padding: 12px;
     --app-title-size: 20px;
     --app-section-title-size: 20px;
+    --app-content-gap: 16px;
     --app-manual-columns: repeat(2, minmax(0, 1fr));
     --tone-result-header-columns: 1fr;
     --tone-recommendation-columns: 1fr;
     --tone-mode-toggle-direction: column;
     --label-row-columns: 1fr;
-    --app-figure-size: 188px;
+    --app-figure-size: 148px;
   }
 }
 
@@ -94,6 +96,7 @@ canvas {
     --app-card-padding: 12px;
     --app-title-size: 18px;
     --app-section-title-size: 19px;
-    --app-figure-size: 196px;
+    --app-content-gap: 14px;
+    --app-figure-size: 136px;
   }
 }

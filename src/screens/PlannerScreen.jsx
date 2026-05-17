@@ -17,7 +17,7 @@ function PlannerScreen() {
   const outfit = outfits.find((item) => item.id === match?.outfitId);
 
   return (
-    <section style={{ display: "grid", gap: T.sp5 }}>
+    <section style={{ display: "grid", gap: "var(--app-content-gap)", minWidth: 0 }}>
       <div style={{ display: "grid", gap: T.sp2 }}>
         <p style={{ margin: 0, color: T.textMuted, fontSize: T.textXs, letterSpacing: T.trackingWidest, textTransform: "uppercase" }}>
           Planner
@@ -39,12 +39,12 @@ function PlannerScreen() {
         onChange={setWeather}
       />
 
-      <article style={{ ...styles.card, display: "grid", gap: T.sp3 }}>
+      <article style={{ ...styles.card, display: "grid", gap: T.sp3, minWidth: 0 }}>
         <h3 style={{ margin: 0, fontSize: T.textLg, fontWeight: T.weightSemi }}>Propunere</h3>
         <LabelRow label="Ținută" value={outfit?.name || "N/A"} size="md" />
         <LabelRow label="Motiv" value={match?.reason || "N/A"} size="sm" />
         {outfit ? (
-          <div style={{ display: "inline-flex", alignItems: "center", gap: T.sp2, color: T.textSecondary }}>
+          <div style={{ display: "inline-flex", alignItems: "center", gap: T.sp2, color: T.textSecondary, flexWrap: "wrap", overflowWrap: "anywhere" }}>
             <Icon name={outfit.iconName} size={16} /> {outfit.colorStory}
           </div>
         ) : null}

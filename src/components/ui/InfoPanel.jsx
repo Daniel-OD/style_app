@@ -19,6 +19,8 @@ function InfoPanel({ children, variant = "dark", title, text, icon }) {
         borderRadius: T.rMd,
         border: `0.5px solid ${theme.border}`,
         padding: T.sp4,
+        minWidth: 0,
+        overflowWrap: "anywhere",
       }}
     >
       {(title || text || icon) && (
