@@ -82,6 +82,8 @@ export const FIG = {
   neutral: "#d9d2c8",
   neutralSoft: "#f0e9d8",
   neutralDeep: "#252522",
+  overlayOpacity: 0.24,
+  separatorOpacity: 0.2,
 };
 
 export const scoreSignal = (score) => {
