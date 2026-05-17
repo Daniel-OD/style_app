@@ -100,7 +100,7 @@ function UploadZone({ onImage }) {
           Adaugă o poză cu fața ta
         </div>
         <div style={{ fontSize: T.textSm, color: T.textMuted }}>
-          Trage here sau apasă pentru a selecta
+          Trage aici sau apasă pentru a selecta
         </div>
       </div>
       <div style={{ fontSize: T.textXs, color: T.textMuted, fontStyle: "italic" }}>

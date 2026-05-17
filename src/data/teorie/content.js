@@ -36,7 +36,7 @@ export const content = {
     ],
   },
   materials: {
-    title: "Materiale & textură",
+    title: "Materiale și textură",
     iconName: "materials",
     body: "Textura dă profunzime chiar și paletelor neutre.",
     intro: "Textura dă profunzime chiar și paletelor neutre.",
