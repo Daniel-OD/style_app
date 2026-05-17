@@ -6,6 +6,7 @@ function SwatchGrid({ colors, columns = 4 }) {
       {colors.map((color) => (
         <div
           key={color}
+          aria-label={`Culoare ${color}`}
           title={color}
           style={{
             height: 24,

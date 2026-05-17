@@ -5,6 +5,7 @@ import { T } from "./design/tokens";
 const SCREEN_MAP = {
   outfituri: lazy(() => import("./screens/OutfituriScreen")),
   planner: lazy(() => import("./screens/PlannerScreen")),
+  ton: lazy(() => import("./screens/TonPieleScreen")),
   upgrade: lazy(() => import("./screens/UpgradeScreen")),
   teorie: lazy(() => import("./screens/TeorieScreen")),
   reguli: lazy(() => import("./screens/ReguliScreen")),
@@ -28,11 +29,3 @@ export default function App() {
     </AppShell>
   );
 }
-const SCREEN_MAP = {
-  outfituri: lazy(() => import("./screens/OutfituriScreen")),
-  planner:   lazy(() => import("./screens/PlannerScreen")),
-  ton:       lazy(() => import("./screens/TonPieleScreen")), // ← NOU
-  upgrade:   lazy(() => import("./screens/UpgradeScreen")),
-  teorie:    lazy(() => import("./screens/TeorieScreen")),
-  reguli:    lazy(() => import("./screens/ReguliScreen")),
-};
