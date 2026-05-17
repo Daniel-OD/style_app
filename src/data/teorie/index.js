@@ -9,3 +9,4 @@ export const teorieSections = [
 ];
 
 export { content };
+export const TEORIE_CONTENT = content;
