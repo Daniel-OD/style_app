@@ -19,6 +19,7 @@
   --tone-recommendation-columns: minmax(0, 1fr) auto;
   --tone-mode-toggle-direction: row;
   --label-row-columns: minmax(0, auto) minmax(0, 1fr);
+  --app-figure-size: 176px;
 }
 
 html {
@@ -36,13 +37,19 @@ body {
 
 .app-shell__nav,
 .pill-tabs__list {
-  scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
 }
 
 .app-shell__nav::-webkit-scrollbar,
 .pill-tabs__list::-webkit-scrollbar {
-  display: none;
+  height: 6px;
+}
+
+.app-shell__nav::-webkit-scrollbar-thumb,
+.pill-tabs__list::-webkit-scrollbar-thumb {
+  background: rgba(26, 25, 24, 0.16);
+  border-radius: 999px;
 }
 
 @media (max-width: 640px) {
@@ -61,5 +68,16 @@ body {
     --tone-recommendation-columns: 1fr;
     --tone-mode-toggle-direction: column;
     --label-row-columns: 1fr;
+    --app-figure-size: 208px;
+  }
+}
+
+@media (max-width: 430px) {
+  :root {
+    --app-shell-padding-inline: 10px;
+    --app-shell-padding-bottom: 22px;
+    --app-title-size: 18px;
+    --app-section-title-size: 18px;
+    --app-figure-size: 224px;
   }
 }
