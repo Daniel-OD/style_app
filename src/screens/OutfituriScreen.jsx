@@ -55,9 +55,9 @@ function TagList({ label, items, tagStyle }) {
   return (
     <div style={{ display: "grid", gap: T.sp2 }}>
       <p style={microLabel}>{label}</p>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: T.sp1 }}>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: T.sp1, minWidth: 0 }}>
         {items.map((item) => (
-          <span key={item} style={tagStyle}>
+          <span key={item} style={{ ...tagStyle, maxWidth: "100%", overflowWrap: "anywhere" }}>
             {item}
           </span>
         ))}
@@ -86,6 +86,8 @@ function OutfitButton({ item, active, onSelect }) {
         fontFamily: T.fontBody,
         textAlign: "left",
         boxShadow: active ? T.shadowRaised : T.shadowNone,
+        width: "100%",
+        minWidth: 0,
       }}
     >
       <span
@@ -103,11 +105,11 @@ function OutfitButton({ item, active, onSelect }) {
         <Icon name={item.iconName} size={20} />
       </span>
       <span style={{ display: "grid", gap: T.sp1, minWidth: 0 }}>
-        <span style={{ fontFamily: T.fontDisplay, fontSize: T.textLg, fontWeight: T.weightSemi, lineHeight: 1.1 }}>
+        <span style={{ fontFamily: T.fontDisplay, fontSize: T.textLg, fontWeight: T.weightSemi, lineHeight: 1.1, overflowWrap: "anywhere" }}>
           {item.name}
         </span>
         {item.energy ? (
-          <span style={{ color: T.textSecondary, fontSize: T.textSm, lineHeight: 1.35 }}>
+          <span style={{ color: T.textSecondary, fontSize: T.textSm, lineHeight: 1.35, overflowWrap: "anywhere" }}>
             {item.energy}
           </span>
         ) : null}
@@ -124,7 +126,7 @@ function OutfituriScreen() {
   const version = active?.versions.find((item) => item.v === activeV) || active?.versions[0];
 
   return (
-    <section style={{ display: "grid", gap: T.sp4 }}>
+    <section style={{ display: "grid", gap: "var(--app-content-gap)", minWidth: 0 }}>
       <PillTabs
         ariaLabel="Filtru ocazii"
         options={occasions.map((item) => ({ id: item.id, label: item.label, iconName: item.iconName }))}
@@ -133,12 +135,12 @@ function OutfituriScreen() {
       />
 
       {active && version ? (
-        <article style={{ ...styles.card, display: "grid", gap: T.sp4, padding: "var(--app-card-padding)" }}>
-          <div style={{ display: "grid", gap: T.sp2 }}>
-            <p style={microLabel}>Ținuta selectată</p>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "start", gap: T.sp2 }}>
-              <div style={{ display: "grid", gap: T.sp1 }}>
-                <h2 style={{ margin: 0, fontFamily: T.fontDisplay, fontSize: "var(--app-section-title-size)", fontWeight: T.weightSemi, lineHeight: 1.1 }}>
+         <article style={{ ...styles.card, display: "grid", gap: T.sp3, padding: "var(--app-card-padding)", minWidth: 0 }}>
+           <div style={{ display: "grid", gap: T.sp2 }}>
+             <p style={microLabel}>Ținuta selectată</p>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "start", gap: T.sp2, flexWrap: "wrap" }}>
+              <div style={{ display: "grid", gap: T.sp1, minWidth: 0 }}>
+                <h2 style={{ margin: 0, fontFamily: T.fontDisplay, fontSize: "var(--app-section-title-size)", fontWeight: T.weightSemi, lineHeight: 1.1, overflowWrap: "anywhere" }}>
                   {active.name}
                 </h2>
                 {active.energy ? <p style={{ ...bodyText, fontSize: T.textBase }}>{active.energy}</p> : null}
@@ -189,7 +191,7 @@ function OutfituriScreen() {
         </article>
       ) : null}
 
-      <article style={{ ...styles.card, display: "grid", gap: T.sp3, padding: "var(--app-card-padding)" }}>
+      <article style={{ ...styles.card, display: "grid", gap: T.sp3, padding: "var(--app-card-padding)", minWidth: 0 }}>
         <div style={{ display: "grid", gap: T.sp1 }}>
           <p style={microLabel}>Ținute</p>
           <h3 style={{ margin: 0, fontFamily: T.fontDisplay, fontSize: T.textLg, fontWeight: T.weightSemi }}>Alege direcția</h3>

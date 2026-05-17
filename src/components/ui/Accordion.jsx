@@ -25,6 +25,7 @@ const triggerStyle = {
   fontSize: T.textMd,
   fontWeight: T.weightSemi,
   textAlign: "left",
+  whiteSpace: "normal",
 };
 
 const bodyStyle = (isOpen) => ({
@@ -83,7 +84,7 @@ const AccordionItem = ({ id, title, icon, content, isOpen, onToggle }) => (
       onClick={onToggle}
       style={triggerStyle}
     >
-      <span style={{ display: "inline-flex", alignItems: "center", gap: T.sp2 }}>
+      <span style={{ display: "inline-flex", alignItems: "center", gap: T.sp2, minWidth: 0, flex: 1, overflowWrap: "anywhere" }}>
         {icon ? <Icon name={icon} size={16} /> : null}
         {title}
       </span>
