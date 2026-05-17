@@ -135,9 +135,9 @@ function OutfituriScreen() {
       />
 
       {active && version ? (
-         <article style={{ ...styles.card, display: "grid", gap: T.sp3, padding: "var(--app-card-padding)", minWidth: 0 }}>
-           <div style={{ display: "grid", gap: T.sp2 }}>
-             <p style={microLabel}>Ținuta selectată</p>
+        <article style={{ ...styles.card, display: "grid", gap: T.sp3, padding: "var(--app-card-padding)", minWidth: 0 }}>
+          <div style={{ display: "grid", gap: T.sp2 }}>
+            <p style={microLabel}>Ținuta selectată</p>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "start", gap: T.sp2, flexWrap: "wrap" }}>
               <div style={{ display: "grid", gap: T.sp1, minWidth: 0 }}>
                 <h2 style={{ margin: 0, fontFamily: T.fontDisplay, fontSize: "var(--app-section-title-size)", fontWeight: T.weightSemi, lineHeight: 1.1, overflowWrap: "anywhere" }}>
