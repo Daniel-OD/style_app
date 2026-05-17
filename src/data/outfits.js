@@ -117,7 +117,7 @@ export const OUTFITS = [
     palette: ["#c4956a", "#64724b", "#7a9ab5", "#f0e9d8"],
     figure: {
       top: "#e8d5b8",
-      shirt: "#e8d5b8",
+      layer: "#64724b",
       bottom: "#7a9ab5",
       shoes: "#e8e0d0",
     },
@@ -198,8 +198,7 @@ export const outfits = OUTFITS.map((outfit) => ({
       label: outfit.name,
       fig: {
         top: outfit.figure.top,
-        layer: outfit.figure.shirt,
-        shirt: outfit.figure.shirt,
+        layer: outfit.figure.layer || null,
         bottom: outfit.figure.bottom,
         shoes: outfit.figure.shoes,
       },
