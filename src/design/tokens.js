@@ -105,7 +105,7 @@ export const styles = {
     borderRadius: T.rMd,
     boxShadow: T.shadowRaised,
     border: `0.5px solid ${T.border}`,
-    padding: T.sp4,
+    padding: "var(--app-card-padding)",
   },
   cardRaised: {
     background: T.bgCard,
@@ -128,7 +128,7 @@ export const styles = {
     margin: 0,
   },
   page: {
-    minHeight: "100vh",
+    minHeight: "100dvh",
     background: T.bg,
     color: T.textPrimary,
     fontFamily: T.fontBody,

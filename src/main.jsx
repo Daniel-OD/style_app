@@ -2,13 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import { T } from "./design/tokens";
+import "./styles/responsive.css";
 
 const rootElement = document.documentElement;
 const bodyElement = document.body;
 
 rootElement.style.background = T.bg;
 bodyElement.style.margin = "0";
-bodyElement.style.minHeight = "100vh";
+bodyElement.style.minHeight = "100dvh";
 bodyElement.style.background = T.bg;
 bodyElement.style.fontFamily = T.fontBody;
 bodyElement.style.color = T.textPrimary;

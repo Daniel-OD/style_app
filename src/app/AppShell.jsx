@@ -22,7 +22,14 @@ const navButton = (active) => ({
 
 function AppShell({ tab, setTab, children }) {
   return (
-    <div style={{ minHeight: "100vh", background: T.bg, color: T.textPrimary, fontFamily: T.fontBody }}>
+    <div
+      style={{
+        minHeight: "100dvh",
+        background: T.bg,
+        color: T.textPrimary,
+        fontFamily: T.fontBody,
+      }}
+    >
       <header
         style={{
           position: "sticky",
@@ -30,17 +37,17 @@ function AppShell({ tab, setTab, children }) {
           zIndex: 5,
           background: T.bg,
           borderBottom: `0.5px solid ${T.border}`,
-          padding: `${T.sp4}px ${T.sp5}px`,
+          padding: `calc(var(--app-header-padding-block) + var(--app-safe-top)) calc(var(--app-shell-padding-inline) + var(--app-safe-right)) var(--app-header-padding-block) calc(var(--app-shell-padding-inline) + var(--app-safe-left))`,
         }}
       >
-        <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gap: T.sp3 }}>
-          <h1 style={{ margin: 0, fontFamily: T.fontDisplay, fontSize: T.textXl, fontWeight: T.weightSemi }}>
+        <div style={{ maxWidth: "var(--app-shell-max-width)", margin: "0 auto", display: "grid", gap: T.sp3 }}>
+          <h1 style={{ margin: 0, fontFamily: T.fontDisplay, fontSize: "var(--app-title-size)", fontWeight: T.weightSemi, lineHeight: 1.15 }}>
             Asistent de Stil
           </h1>
-          <nav style={{ display: "flex", gap: T.sp2, flexWrap: "wrap" }} aria-label="Navigație principală">
+          <nav className="app-shell__nav" style={{ display: "flex", gap: T.sp2, flexWrap: "wrap" }} aria-label="Navigație principală">
             {TABS.map((item) => {
               const isActive = item.id === tab;
-                return (
+              return (
                 <button key={item.id} type="button" aria-current={isActive ? "page" : undefined} onClick={() => setTab(item.id)} style={navButton(isActive)}>
                   <Icon name={item.iconName} size={16} />
                   {item.label}
@@ -50,7 +57,15 @@ function AppShell({ tab, setTab, children }) {
           </nav>
         </div>
       </header>
-      <main style={{ maxWidth: 1100, margin: "0 auto", padding: `${T.sp6}px ${T.sp5}px ${T.sp8}px` }}>{children}</main>
+      <main
+        style={{
+          maxWidth: "var(--app-shell-max-width)",
+          margin: "0 auto",
+          padding: `var(--app-shell-padding-top) calc(var(--app-shell-padding-inline) + var(--app-safe-right)) calc(var(--app-shell-padding-bottom) + var(--app-safe-bottom)) calc(var(--app-shell-padding-inline) + var(--app-safe-left))`,
+        }}
+      >
+        {children}
+      </main>
     </div>
   );
 }

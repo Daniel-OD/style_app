@@ -15,7 +15,7 @@ function OutfituriScreen() {
         <p style={{ margin: 0, color: T.textMuted, fontSize: T.textXs, letterSpacing: T.trackingWidest, textTransform: "uppercase" }}>
           Outfituri
         </p>
-        <h2 style={{ margin: 0, fontFamily: T.fontDisplay, fontSize: T.textXl, fontWeight: T.weightSemi }}>Browser de ținute</h2>
+        <h2 style={{ margin: 0, fontFamily: T.fontDisplay, fontSize: "var(--app-section-title-size)", fontWeight: T.weightSemi, lineHeight: 1.15 }}>Browser de ținute</h2>
       </div>
 
       <PillTabs
@@ -25,7 +25,7 @@ function OutfituriScreen() {
         onChange={setOcc}
       />
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(280px,1fr))", gap: T.sp4 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(280px,100%),1fr))", gap: T.sp4 }}>
         <article style={{ ...styles.card, display: "grid", gap: T.sp2 }}>
           <h3 style={{ margin: 0, fontSize: T.textMd, fontWeight: T.weightSemi }}>Ținute</h3>
           {visible.map((item) => {
