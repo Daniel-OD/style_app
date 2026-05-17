@@ -8,7 +8,7 @@ const SIZE = {
 function LabelRow({ label, value, size = "sm" }) {
   const scale = SIZE[size] || SIZE.sm;
   return (
-    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: T.sp3 }}>
+    <div style={{ display: "grid", gridTemplateColumns: "var(--label-row-columns)", alignItems: "start", gap: T.sp2 }}>
       <span
         style={{
           color: T.textMuted,
@@ -20,7 +20,7 @@ function LabelRow({ label, value, size = "sm" }) {
       >
         {label}
       </span>
-      <strong style={{ margin: 0, color: T.textPrimary, fontSize: scale.value, fontWeight: T.weightSemi }}>{value}</strong>
+      <strong style={{ margin: 0, color: T.textPrimary, fontSize: scale.value, fontWeight: T.weightSemi, overflowWrap: "anywhere" }}>{value}</strong>
     </div>
   );
 }

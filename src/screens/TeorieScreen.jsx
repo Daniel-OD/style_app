@@ -9,7 +9,7 @@ function TeorieScreen() {
         <p style={{ margin: 0, color: T.textMuted, fontSize: T.textXs, letterSpacing: T.trackingWidest, textTransform: "uppercase" }}>
           Teorie
         </p>
-        <h2 style={{ margin: 0, fontFamily: T.fontDisplay, fontSize: T.textXl, fontWeight: T.weightSemi }}>Fundamente de stil</h2>
+        <h2 style={{ margin: 0, fontFamily: T.fontDisplay, fontSize: "var(--app-section-title-size)", fontWeight: T.weightSemi, lineHeight: 1.15 }}>Fundamente de stil</h2>
       </div>
 
       {teorieSections.slice(0, 5).map((section, index) => (

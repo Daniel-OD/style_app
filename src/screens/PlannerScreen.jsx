@@ -22,7 +22,7 @@ function PlannerScreen() {
         <p style={{ margin: 0, color: T.textMuted, fontSize: T.textXs, letterSpacing: T.trackingWidest, textTransform: "uppercase" }}>
           Planner
         </p>
-        <h2 style={{ margin: 0, fontFamily: T.fontDisplay, fontSize: T.textXl, fontWeight: T.weightSemi }}>Recomandare ocazie + vreme</h2>
+        <h2 style={{ margin: 0, fontFamily: T.fontDisplay, fontSize: "var(--app-section-title-size)", fontWeight: T.weightSemi, lineHeight: 1.15 }}>Recomandare ocazie + vreme</h2>
       </div>
 
       <PillTabs

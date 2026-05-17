@@ -9,10 +9,10 @@ function UpgradeScreen() {
         <p style={{ margin: 0, color: T.textMuted, fontSize: T.textXs, letterSpacing: T.trackingWidest, textTransform: "uppercase" }}>
           Upgrade
         </p>
-        <h2 style={{ margin: 0, fontFamily: T.fontDisplay, fontSize: T.textXl, fontWeight: T.weightSemi }}>Pași de upgrade</h2>
+        <h2 style={{ margin: 0, fontFamily: T.fontDisplay, fontSize: "var(--app-section-title-size)", fontWeight: T.weightSemi, lineHeight: 1.15 }}>Pași de upgrade</h2>
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(240px,1fr))", gap: T.sp4 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(240px,100%),1fr))", gap: T.sp4 }}>
         {upgrade.map((item) => (
           <article key={item.id} style={{ ...styles.card, display: "grid", gap: T.sp3 }}>
             <h3 style={{ margin: 0, display: "inline-flex", alignItems: "center", gap: T.sp2, fontSize: T.textMd, fontWeight: T.weightSemi }}>

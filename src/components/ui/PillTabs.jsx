@@ -6,6 +6,7 @@ const PillTabs = ({ options = [], value, onChange, ariaLabel = "Filtre" }) => {
   return (
     <div style={{ position: "relative" }}>
       <div
+        className="pill-tabs__list"
         role="tablist"
         aria-label={ariaLabel}
         style={{
@@ -14,6 +15,7 @@ const PillTabs = ({ options = [], value, onChange, ariaLabel = "Filtre" }) => {
           overflowX: "auto",
           overflowY: "hidden",
           paddingRight: T.sp8,
+          paddingBottom: T.sp1,
         }}
       >
         {options.map((item) => {

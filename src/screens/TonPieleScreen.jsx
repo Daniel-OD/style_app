@@ -81,7 +81,7 @@ function UploadZone({ onImage }) {
       style={{
         border: `2px dashed ${drag ? T.bgInk : T.border}`,
         borderRadius: T.rLg,
-        padding: `${T.sp8}px ${T.sp6}px`,
+        padding: `var(--app-upload-padding-block) var(--app-upload-padding-inline)`,
         textAlign: "center",
         cursor: "pointer",
         background: drag ? T.bgSubtle : T.bgCard,
@@ -121,7 +121,7 @@ function UploadZone({ onImage }) {
 /* ── MANUAL TONE SELECTOR ───────────────────────────────────── */
 function ManualSelector({ selected, onSelect }) {
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: T.sp2 }}>
+    <div style={{ display: "grid", gridTemplateColumns: "var(--app-manual-columns)", gap: T.sp2 }}>
       {MANUAL_TONES.map(t => (
         <button
           key={t.id}
@@ -170,9 +170,9 @@ function ResultCard({ profile, detectedHex }) {
       {/* Tone header */}
       <div style={{
         ...styles.cardRaised,
-        padding: T.sp5,
+        padding: "var(--app-card-padding)",
         display: "grid",
-        gridTemplateColumns: "64px 1fr",
+        gridTemplateColumns: "var(--tone-result-header-columns)",
         gap: T.sp4,
         alignItems: "center",
       }}>
@@ -273,9 +273,9 @@ function ResultCard({ profile, detectedHex }) {
           {recommended.map(o => (
             <div key={o.id} style={{
               ...styles.cardRaised,
-              padding: T.sp4,
+              padding: "var(--app-card-padding)",
               display: "grid",
-              gridTemplateColumns: "1fr auto",
+              gridTemplateColumns: "var(--tone-recommendation-columns)",
               gap: T.sp3,
               alignItems: "center",
             }}>
@@ -379,7 +379,7 @@ export default function TonPieleScreen() {
       {/* Header */}
       <div style={{ display: "grid", gap: T.sp2 }}>
         <p style={{ margin: 0, ...styles.microLabel }}>Analiză Stil</p>
-        <h2 style={{ margin: 0, ...styles.sectionTitle }}>Tonul pielii tale</h2>
+        <h2 style={{ margin: 0, ...styles.sectionTitle, fontSize: "var(--app-section-title-size)", lineHeight: 1.15 }}>Tonul pielii tale</h2>
         <p style={{ margin: 0, fontSize: T.textSm, color: T.textMuted }}>
           Descoperă ce culori te avantajează. Totul se procesează local — nicio poză nu pleacă de pe dispozitivul tău.
         </p>
@@ -397,7 +397,7 @@ export default function TonPieleScreen() {
         <div style={{ display: "grid", gap: T.sp4 }}>
 
           {/* Mode toggle */}
-          <div style={{ display: "flex", gap: T.sp2, background: T.bgSubtle, borderRadius: T.rMd, padding: T.sp1 }}>
+          <div style={{ display: "flex", flexDirection: "var(--tone-mode-toggle-direction, row)", gap: T.sp2, background: T.bgSubtle, borderRadius: T.rMd, padding: T.sp1 }}>
             {[
               { id: "upload", label: "Uploadează o poză" },
               { id: "manual", label: "Selectează manual" },
@@ -496,7 +496,7 @@ export default function TonPieleScreen() {
               <img
                 src={previewUrl}
                 alt="Poza analizată"
-                style={{ height: 200, objectFit: "cover", display: "block" }}
+                style={{ width: "100%", maxWidth: 360, height: "min(200px, 56vw)", objectFit: "cover", display: "block" }}
               />
             </div>
           )}
